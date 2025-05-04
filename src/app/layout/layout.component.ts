@@ -92,7 +92,7 @@ import { LayoutService } from './layout.service';
       
         </mat-toolbar>
         <!-- Add Content Here -->
-     <div class="main-content no-copy"><router-outlet /></div> 
+     <div class="main-content"><router-outlet /></div> 
       <footer class="no-copy flex flex-row justify-between items-center">
   <div class="pl-5 overflow-hidden"> 2025 &copy; Pete Sahatt</div>
   <div class="pr-5 overflow-hidden">
@@ -127,43 +127,43 @@ export class LayoutComponent {
       shareReplay()
     );
 
-    enterFullscreen(element: HTMLElement): Promise<void> {
-      if (element.requestFullscreen) {
-          return element.requestFullscreen();
-      } else if ((element as any).webkitRequestFullscreen) {
-          return (element as any).webkitRequestFullscreen();
-      } else if ((element as any).mozRequestFullScreen) {
-          return (element as any).mozRequestFullScreen();
-      } else if ((element as any).msRequestFullscreen) {
-          return (element as any).msRequestFullscreen();
-      } else {
-          return Promise.reject(new Error('Fullscreen API is not supported.'));
-      }
-  }
-    exitFullscreen(): Promise<void> {
-        if (document.exitFullscreen) {
-            return document.exitFullscreen();
-        } else if ((document as any).webkitExitFullscreen) {
-            return (document as any).webkitExitFullscreen();
-        } else if ((document as any).mozCancelFullScreen) {
-            return (document as any).mozCancelFullScreen();
-        } else if ((document as any).msExitFullscreen) {
-            return (document as any).msExitFullscreen();
-        } else {
-            return Promise.reject(new Error('Fullscreen API is not supported.'));
-        }
+  enterFullscreen(element: HTMLElement): Promise<void> {
+    if (element.requestFullscreen) {
+      return element.requestFullscreen();
+    } else if ((element as any).webkitRequestFullscreen) {
+      return (element as any).webkitRequestFullscreen();
+    } else if ((element as any).mozRequestFullScreen) {
+      return (element as any).mozRequestFullScreen();
+    } else if ((element as any).msRequestFullscreen) {
+      return (element as any).msRequestFullscreen();
+    } else {
+      return Promise.reject(new Error('Fullscreen API is not supported.'));
     }
-    toggleFullscreen() {
-      if (this.element) {
-        if (!document.fullscreenElement) {
-          this.enterFullscreen(this.element)
-            .then(() => console.log('Fullscreen on'))
-            .catch((error) => console.error('Error toggling fullscreen:', error));
-        } else {
-          this.exitFullscreen()
+  }
+  exitFullscreen(): Promise<void> {
+    if (document.exitFullscreen) {
+      return document.exitFullscreen();
+    } else if ((document as any).webkitExitFullscreen) {
+      return (document as any).webkitExitFullscreen();
+    } else if ((document as any).mozCancelFullScreen) {
+      return (document as any).mozCancelFullScreen();
+    } else if ((document as any).msExitFullscreen) {
+      return (document as any).msExitFullscreen();
+    } else {
+      return Promise.reject(new Error('Fullscreen API is not supported.'));
+    }
+  }
+  toggleFullscreen() {
+    if (this.element) {
+      if (!document.fullscreenElement) {
+        this.enterFullscreen(this.element)
+          .then(() => console.log('Fullscreen on'))
+          .catch((error) => console.error('Error toggling fullscreen:', error));
+      } else {
+        this.exitFullscreen()
           .then(() => console.log('Fullscreen off'))
           .catch((error) => console.error('Error toggling fullscreen:', error));
-        }
       }
     }
+  }
 }
