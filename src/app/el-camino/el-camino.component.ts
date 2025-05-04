@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { LayoutService } from '../layout/layout.service';
 
 @Component({
   selector: 'app-el-camino',
@@ -34,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
   template: `
-  <div style="display: flex; flex-direction: column; justify-content: start;align-items:center">
+  <div class="pt-10" style="display: flex; flex-direction: column; justify-content: start;align-items:center">
     
     <button color="primary" *ngIf="!disableButton" [disabled]="disableButton" mat-fab extended type="button" (click)="nextLevel();">
       <mat-icon>route</mat-icon><span>Inicio</span></button>
@@ -46,7 +47,7 @@ import { MatIconModule } from '@angular/material/icon';
         <ng-container #container *ngFor="let tile of level.blocks; index as i">
           <mat-grid-tile class="mat-grid-tile" (click)="rotate(level, tile)" [@rotateState]="tile.currentRotation" 
           [ngStyle]="{
-              filter: 'invert(100%)',
+              filter: (themeService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
               background: 'center / cover no-repeat url(' + tile.image + ')',
               border: (tile.success && devMode) ? 'none//1px dashed #550055' : 'none',
             }">
@@ -91,6 +92,7 @@ export class ElCaminoComponent implements OnInit,AfterViewInit {
   isLevelDone$ = this.isLevelDone.asObservable();
   subscription!: Subscription;
 devMode:boolean=isDevMode();
+themeService:LayoutService=inject(LayoutService)
 
   constructor(private spinner: NgxSpinnerService) {}
   

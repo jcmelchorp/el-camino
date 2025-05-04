@@ -24,6 +24,7 @@
     "ngx-spinner": "^19.0.0",
     "postcss": "^8.5.3",
     "primeicons": "^7.0.0",
+    "pwa-asset-generator": "^8.0.4",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.5",
     "tslib": "^2.3.0",

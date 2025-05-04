@@ -30,26 +30,33 @@ import { LayoutService } from './layout.service';
   ],
   template: `
     <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav #drawer class="sidenav" fixedInViewport
+      <mat-sidenav #drawer class="sidenav no-copy" fixedInViewport
           [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
-          [opened]="(isHandset$ | async) === false">
+          [opened]="false">
         <mat-toolbar class="flex flex-row justify-center items-center"> 
-          <button mat-button type="button" [routerLink]="['/']"><span class="font-semibold text-2xl">El Camino</span></button>
+        <img class="rounded-full w-10 h-10" src="icons/apple-icon-57x57.png"/>
+          <button mat-button type="button" [routerLink]="['/']">
+          <span class="font-semibold text-2xl">El Camino</span>
+          </button>
         </mat-toolbar>
         <mat-nav-list>
-        <a mat-list-item routerLink="/">
+        <a mat-list-item (click)="drawer.close()" routerLink="/">
           <mat-icon matListItemIcon>gamepad</mat-icon> 
          <div matListItemTitle> Play</div>
 </a>
-        <a mat-list-item routerLink="/f">
+        <a mat-list-item (click)="drawer.close()" routerLink="/f">
           <mat-icon matListItemIcon>factory</mat-icon> 
          <div matListItemTitle> Factory</div>
 </a>
+<!-- <a mat-list-item routerLink="/a">
+          <mat-icon matListItemIcon>info</mat-icon> 
+         <div matListItemTitle> About</div>
+</a> -->
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <mat-toolbar class="border" color="primary">
+        <mat-toolbar >
           <div class="w-full flex flex-row justify-between items-center">
 <div class="flex flex-row items-center">
 <button
@@ -59,6 +66,8 @@ import { LayoutService } from './layout.service';
               (click)="drawer.toggle()">
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
+            <img class="rounded-full w-10 h-10" src="icons/apple-icon-57x57.png"/>
+
  <button *ngIf="(isHandset$ | async) || !drawer.opened" mat-button type="button"
             [routerLink]="['/']"><span class="font-semibold text-2xl">El Camino</span></button>
 </div>
@@ -83,17 +92,17 @@ import { LayoutService } from './layout.service';
       
         </mat-toolbar>
         <!-- Add Content Here -->
-     <div class="main-content"><router-outlet /></div> 
-      <footer class="flex flex-row justify-between items-center">
+     <div class="main-content no-copy"><router-outlet /></div> 
+      <footer class="no-copy flex flex-row justify-between items-center">
   <div class="pl-5 overflow-hidden"> 2025 &copy; Pete Sahatt</div>
   <div class="pr-5 overflow-hidden">
-    <a class="border" mat-icon-button href="https://github.com/jcmelchorp/" target="_blank" aria-hidden="false">
+    <a  mat-icon-button href="https://github.com/jcmelchorp/" target="_blank" aria-hidden="false">
     <i class="pi pi-github"></i>
     </a>
-    <a class="border"  mat-icon-button href="https://www.instagram.com/pete.sahatt/" target="_blank" aria-hidden="false">
+    <a mat-icon-button href="https://www.instagram.com/pete.sahatt/" target="_blank" aria-hidden="false">
 <i class="pi pi-instagram"></i>
   </a>
-    <a class="border"  mat-icon-button href="https://x.com/pete_sahatt/" target="_blank" aria-hidden="false">
+    <a  mat-icon-button href="https://x.com/pete_sahatt/" target="_blank" aria-hidden="false">
      <i class="pi pi-twitter"></i>
     </a>
   </div>
