@@ -37,11 +37,11 @@ const levels: LevelTiles[] = [
     cols: 3,
     blocks: [
       { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 90 },
+      { index: 2, type: TileType.S, rot: 0 },
       { index: 3, type: TileType.C, rot: 180 },
       { index: 4, type: TileType.C, rot: 0 },
       { index: 5, type: TileType.E, rot: 90 },
-      { index: 6, type: TileType.S, rot: 0 },
+      { index: 6, type: TileType.S, rot: 90 },
       { index: 7, type: TileType.B, rot: 0 },
       { index: 8, type: TileType.B, rot: 0 },
       { index: 9, type: TileType.E, rot: 180 },
@@ -53,13 +53,13 @@ const levels: LevelTiles[] = [
     cols: 3,
     blocks: [
       { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 90 },
+      { index: 2, type: TileType.S, rot: 0 },
       { index: 3, type: TileType.C, rot: 180 },
       { index: 4, type: TileType.C, rot: 0 },
       { index: 5, type: TileType.E, rot: 90 },
-      { index: 6, type: TileType.S, rot: 0 },
+      { index: 6, type: TileType.S, rot: 90 },
       { index: 7, type: TileType.E, rot: 270 },
-      { index: 8, type: TileType.S, rot: 90 },
+      { index: 8, type: TileType.S, rot: 0 },
       { index: 9, type: TileType.C, rot: 270 },
     ],
   },
@@ -69,9 +69,9 @@ const levels: LevelTiles[] = [
     cols: 3,
     blocks: [
       { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 90 },
+      { index: 2, type: TileType.S, rot: 0 },
       { index: 3, type: TileType.E, rot: 90 },
-      { index: 4, type: TileType.S, rot: 0 },
+      { index: 4, type: TileType.S, rot: 90 },
       { index: 5, type: TileType.C, rot: 90 },
       { index: 6, type: TileType.C, rot: 180 },
       { index: 7, type: TileType.C, rot: 0 },
@@ -87,7 +87,7 @@ const levels: LevelTiles[] = [
       { index: 1, type: TileType.C, rot: 90 },
       { index: 2, type: TileType.C, rot: 180 },
       { index: 3, type: TileType.B, rot: 0 },
-      { index: 4, type: TileType.S, rot: 0 },
+      { index: 4, type: TileType.S, rot: 90 },
       { index: 5, type: TileType.C, rot: 0 },
       { index: 6, type: TileType.E, rot: 90 },
       { index: 7, type: TileType.C, rot: 0 },
@@ -105,9 +105,9 @@ const levels: LevelTiles[] = [
       { index: 3, type: TileType.E, rot: 0 },
       { index: 4, type: TileType.C, rot: 90 },
       { index: 5, type: TileType.C, rot: 270 },
-      { index: 6, type: TileType.S, rot: 0 },
+      { index: 6, type: TileType.S, rot: 90 },
       { index: 7, type: TileType.C, rot: 0 },
-      { index: 8, type: TileType.S, rot: 90 },
+      { index: 8, type: TileType.S, rot: 0 },
       { index: 9, type: TileType.C, rot: 270 },
     ],
   },
@@ -117,10 +117,10 @@ const levels: LevelTiles[] = [
     cols: 3,
     blocks: [
       { index: 1, type: TileType.E, rot: 270 },
-      { index: 2, type: TileType.S, rot: 90 },
+      { index: 2, type: TileType.S, rot: 0 },
       { index: 3, type: TileType.C, rot: 180 },
       { index: 4, type: TileType.C, rot: 90 },
-      { index: 5, type: TileType.S, rot: 90 },
+      { index: 5, type: TileType.S, rot: 0 },
       { index: 6, type: TileType.C, rot: 270 },
       { index: 7, type: TileType.E, rot: 180 },
       { index: 8, type: TileType.B, rot: 0 },
@@ -133,10 +133,10 @@ const levels: LevelTiles[] = [
     cols: 3,
     blocks: [
       { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 90 },
+      { index: 2, type: TileType.S, rot: 0 },
       { index: 3, type: TileType.E, rot: 90 },
       { index: 4, type: TileType.C, rot: 0 },
-      { index: 5, type: TileType.S, rot: 90 },
+      { index: 5, type: TileType.S, rot: 0 },
       { index: 6, type: TileType.C, rot: 180 },
       { index: 7, type: TileType.B, rot: 0 },
       { index: 8, type: TileType.B, rot: 0 },
@@ -151,7 +151,7 @@ const levels: LevelTiles[] = [
       { index: 1, type: TileType.C, rot: 90 },
       { index: 2, type: TileType.C, rot: 180 },
       { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.S, rot: 0 },
+      { index: 4, type: TileType.S, rot: 90 },
       { index: 5, type: TileType.C, rot: 0 },
       { index: 6, type: TileType.C, rot: 270 },
       { index: 7, type: TileType.C, rot: 0 },
@@ -169,7 +169,7 @@ const levels: LevelTiles[] = [
       { index: 3, type: TileType.E, rot: 0 },
       { index: 4, type: TileType.C, rot: 0 },
       { index: 5, type: TileType.C, rot: 180 },
-      { index: 6, type: TileType.S, rot: 0 },
+      { index: 6, type: TileType.S, rot: 90 },
       { index: 7, type: TileType.B, rot: 0 },
       { index: 8, type: TileType.C, rot: 0 },
       { index: 9, type: TileType.C, rot: 270 },
@@ -183,9 +183,9 @@ const levels: LevelTiles[] = [
       { index: 1, type: TileType.C, rot: 90 },
       { index: 2, type: TileType.C, rot: 180 },
       { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.S, rot: 0 },
-      { index: 5, type: TileType.S, rot: 0 },
-      { index: 6, type: TileType.S, rot: 0 },
+      { index: 4, type: TileType.S, rot: 90 },
+      { index: 5, type: TileType.S, rot: 90 },
+      { index: 6, type: TileType.S, rot: 90 },
       { index: 7, type: TileType.E, rot: 180 },
       { index: 8, type: TileType.C, rot: 0 },
       { index: 9, type: TileType.C, rot: 270 },
@@ -200,7 +200,7 @@ const levels: LevelTiles[] = [
       { index: 2, type: TileType.C, rot: 90 },
       { index: 3, type: TileType.C, rot: 180 },
       { index: 4, type: TileType.E, rot: 0 },
-      { index: 5, type: TileType.S, rot: 0 },
+      { index: 5, type: TileType.S, rot: 90 },
       { index: 6, type: TileType.E, rot: 180 },
       { index: 7, type: TileType.C, rot: 0 },
       { index: 8, type: TileType.C, rot: 270 },
@@ -215,7 +215,7 @@ const levels: LevelTiles[] = [
       { index: 1, type: TileType.C, rot: 90 },
       { index: 2, type: TileType.E, rot: 90 },
       { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.S, rot: 0 },
+      { index: 4, type: TileType.S, rot: 90 },
       { index: 5, type: TileType.C, rot: 90 },
       { index: 6, type: TileType.C, rot: 270 },
       { index: 7, type: TileType.C, rot: 0 },
@@ -239,13 +239,24 @@ export class ElCaminoService {
       map((levels) =>
         levels.map((level) => {
           let blocks = level.blocks.map((tile) => {
-            let iniRot = Math.floor(Math.random() * 4) * 90;
+            let iniRot
+          if (tile.type == TileType.E || tile.type == TileType.C)  iniRot = (Math.floor(Math.random() * 4) * 90) % 360;
+          if (tile.type == TileType.S) iniRot = (Math.floor(Math.random() * 2) * 90) % 180;
             if (iniRot == tile.rot) {
-              if (tile.type == TileType.B) iniRot = 0;
-              if (tile.type == TileType.S) iniRot = (iniRot + 90) % 180;
-              if (tile.type == TileType.C || tile.type == TileType.E)
-                iniRot = (iniRot + 90) % 360;
-            } else {
+              switch (tile.type) {
+                case TileType.E:
+                  iniRot = (iniRot + 90) % 360;
+                  break;
+                case TileType.C:
+                  iniRot = (iniRot + 90) % 360;
+                  break;
+                case TileType.S:
+                  iniRot = (iniRot + 90) % 180;
+                  break;
+                case TileType.B:
+                  iniRot = 0;
+                  break;
+              }
             }
             return {
               index: tile.index,
@@ -253,7 +264,7 @@ export class ElCaminoService {
               image: tileImageFromType(tile.type),
               currentRotation: iniRot,
               correctRotation: tile.rot,
-              success:(tile.type == TileType.B)
+              success: (tile.type == TileType.B || iniRot == tile.rot)
             } as TileExtended;
           });
           return {
