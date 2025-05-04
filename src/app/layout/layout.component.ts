@@ -49,7 +49,7 @@ import { LayoutService } from './layout.service';
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <mat-toolbar color="primary">
+        <mat-toolbar class="border" color="primary">
           <div class="w-full flex flex-row justify-between items-center">
 <div class="flex flex-row items-center">
 <button
@@ -83,7 +83,21 @@ import { LayoutService } from './layout.service';
       
         </mat-toolbar>
         <!-- Add Content Here -->
-      <router-outlet />
+     <div class="main-content"><router-outlet /></div> 
+      <footer class="flex flex-row justify-between items-center">
+  <div class="pl-5 overflow-hidden"> 2025 &copy; Pete Sahatt</div>
+  <div class="pr-5 overflow-hidden">
+    <a class="border" mat-icon-button href="https://github.com/jcmelchorp/" target="_blank" aria-hidden="false">
+    <i class="pi pi-github"></i>
+    </a>
+    <a class="border"  mat-icon-button href="https://www.instagram.com/pete.sahatt/" target="_blank" aria-hidden="false">
+<i class="pi pi-instagram"></i>
+  </a>
+    <a class="border"  mat-icon-button href="https://x.com/pete_sahatt/" target="_blank" aria-hidden="false">
+     <i class="pi pi-twitter"></i>
+    </a>
+  </div>
+</footer>
       </mat-sidenav-content>
     </mat-sidenav-container>
     
