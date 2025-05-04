@@ -6,7 +6,7 @@ export interface LevelTiles {
 }
 
 export interface TileFigure {
-  index: number;
+  index?: number;
   type: TileType;
   rot: number;
 }
@@ -16,6 +16,7 @@ export interface TileExtended extends TileFigure {
   currentRotation?: number;
   correctRotation?: number;
   success?: boolean;
+  text?:string;
 }
 
 export enum TileType {
