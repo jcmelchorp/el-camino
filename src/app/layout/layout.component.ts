@@ -96,7 +96,7 @@ import { LayoutService } from './layout.service';
       <footer class="no-copy flex flex-row justify-between items-center">
   <div class="pl-5 overflow-hidden"> 2025 &copy; Pete Sahatt</div>
   <div class="pr-5 overflow-hidden">
-    <a  mat-icon-button href="https://github.com/jcmelchorp/" target="_blank" aria-hidden="false">
+    <a  mat-icon-button href="https://github.com/jcmelchorp/el-camino" target="_blank" aria-hidden="false">
     <i class="pi pi-github"></i>
     </a>
     <a mat-icon-button href="https://www.instagram.com/pete.sahatt/" target="_blank" aria-hidden="false">
