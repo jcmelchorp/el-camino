@@ -224,15 +224,45 @@ const levels: LevelTiles[] = [
     ],
   },
 ];
+const levs: string[] = [
+  'E.3 E.1 B.0 B.0',
+  'E.3 C.2 B.0 E.2',
+  'E.3 C.2 E.3 C.3',
+  'C.1 S.0 C.2 C.0 E.1 S.1 B.0 B.0 E.2',
+  'C.1 S.0 C.2 C.0 E.1 S.1 E.3 S.0 C.3',
+  'C.1 S.0 E.1 S.1 C.1 C.2 C.0 C.3 E.2',
+  'C.1 C.2 B.0 S.1 C.0 E.1 C.0 E.1 B.0',
+  'E.3 C.2 E.0 C.1 C.3 S.1 C.0 S.0 C.3',
+  'E.3 S.0 C.2 C.1 S.0 C.3 E.2 B.0 B.0',
+  'C.1 S.0 E.1 C.0 S.0 C.2 B.0 B.0 E.2',
+  'C.1 C.2 E.0 S.1 C.0 C.3 C.0 E.1 B.0',
+  'E.0 B.0 E.0 C.0 C.2 S.1 B.0 C.0 C.3',
+  'C.1 C.2 E.0 S.1 S.1 S.1 E.2 C.0 C.3',
+  'B.1 C.1 C.2 E.0 S.1 E.2 C.0 C.3 B.0',
+  'C.1 E.1 E.0 S.1 C.1 C.3 C.0 C.3 B.0'
 
+];
 @Injectable()
 export class ElCaminoService {
   levels$!: Observable<LevelTiles[]>;
   levels: Signal<LevelTiles[] | undefined>;
+  signalLevels: Signal<string[][] | undefined>;
   constructor() {
     this.levels$ = this.getBlocks();
     this.levels = toSignal(this.levels$);
+    this.signalLevels = toSignal(this.getAll());
   }
+
+  getAll():Observable<string[][]> {
+    return of(levs).pipe(
+      map((levels) =>
+        levels.map((level) => level.split(' '))));
+    }
+
+    getLevel(numLev:number): Observable<string[]> {
+      return of(levs[numLev]).pipe(
+        map((level) => level.split(' ')));
+    }
 
   getBlocks(): Observable<LevelTiles[]> {
     return of(levels).pipe(
@@ -240,8 +270,8 @@ export class ElCaminoService {
         levels.map((level) => {
           let blocks = level.blocks.map((tile) => {
             let iniRot
-          if (tile.type == TileType.E || tile.type == TileType.C)  iniRot = (Math.floor(Math.random() * 4) * 90) % 360;
-          if (tile.type == TileType.S) iniRot = (Math.floor(Math.random() * 2) * 90) % 180;
+            if (tile.type == TileType.E || tile.type == TileType.C) iniRot = (Math.floor(Math.random() * 4) * 90) % 360;
+            if (tile.type == TileType.S) iniRot = (Math.floor(Math.random() * 2) * 90) % 180;
             if (iniRot == tile.rot) {
               switch (tile.type) {
                 case TileType.E:

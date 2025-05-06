@@ -94,7 +94,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     </div>
   `,
   styleUrl: './factory.component.css',
-  imports: [NgFor,CdkDrag, CdkDropList,CdkDragPlaceholder,NgStyle,MatTreeModule,MatGridListModule,MatCardModule,FormsModule,ReactiveFormsModule,MatInputModule,KeyValuePipe,JsonPipe],
+  imports: [NgFor,CdkDrag, CdkDropList,CdkDragPlaceholder,NgStyle,MatTreeModule,MatGridListModule,MatCardModule,FormsModule,ReactiveFormsModule,MatInputModule,JsonPipe],
   animations: [
     trigger('rotateState', [
       state('0', style({ transform: 'rotate(0deg)' })),

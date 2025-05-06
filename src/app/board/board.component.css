@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+
+.more-button {
+  float: right;
+  font-size: 2em;
+}
+
+.cdk-drop-list {
+  height: 70%;
+  width: 70%;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  opacity: 0.5;
+}
+
+.cdk-drag-animating {
+  transition: unset;
+}
+
+.cdk-drag-placeholder {
+  display: none;
+}
