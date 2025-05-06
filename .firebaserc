@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "vergames"
+  },
+  "targets": {
+    "vergames": {
+      "hosting": {
+        "el-camino": [
+          "el-camino"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

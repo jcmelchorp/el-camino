@@ -4,12 +4,21 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { routes } from './app.routes';
 import { provideSpinnerConfig } from 'ngx-spinner';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideSpinnerConfig({ type: 'pacman' }),
+    provideSpinnerConfig({ type: 'pacman' }), 
+    provideFirebaseApp(() => initializeApp(environment.firebaseOptions)), 
+    provideAuth(() => getAuth()), 
+    provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, 
+    provideDatabase(() => getDatabase()),
   ]
 };

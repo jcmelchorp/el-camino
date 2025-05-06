@@ -62,7 +62,7 @@ b,c,d,e,s,t
     
   `,
   styleUrl: './new-level.component.css',
-  imports: [CdkDrag, CdkDropList, CdkDragPlaceholder, CommonModule, MatGridListModule, MatInputModule, FormsModule, ReactiveFormsModule, BoardComponent],
+  imports: [CdkDrag, CdkDropList, CdkDragPlaceholder, CommonModule, MatGridListModule, MatInputModule, FormsModule, ReactiveFormsModule],
   providers:[LayoutService],
   animations:[
     trigger('rotateState', [
