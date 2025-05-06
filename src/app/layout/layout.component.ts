@@ -35,7 +35,7 @@ import { LayoutService } from './layout.service';
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="false">
         <mat-toolbar class="flex flex-row justify-center items-center"> 
-        <img class="rounded-full w-10 h-10" src="icons/apple-icon-57x57.png"/>
+        <img class="rounded-full w-10 h-10" src="pwa-assets/favicon-196.png"/>
           <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
           </button>
@@ -66,7 +66,7 @@ import { LayoutService } from './layout.service';
               (click)="drawer.toggle()">
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-            <img class="rounded-full w-10 h-10" src="icons/apple-icon-57x57.png"/>
+            <img class="rounded-full w-10 h-10" src="pwa-assets/favicon-196.png"/>
 
  <button *ngIf="(isHandset$ | async) || !drawer.opened" mat-button type="button"
             [routerLink]="['/']"><span class="font-semibold text-2xl">El Camino</span></button>
