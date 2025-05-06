@@ -1,6 +1,6 @@
 import { CdkDrag, CdkDragEnter, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, inject, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, Input, QueryList, ViewChildren } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { LayoutService } from '../layout/layout.service';
@@ -48,14 +48,15 @@ function getColor() {
 @Component({
   selector: 'app-board',
   imports: [CommonModule,MatGridListModule,MatButtonModule,MatIconModule, CdkDropList, CdkDrag],
-  template: `<mat-grid-list cols="3" rowHeight="1:1" gutterSize="10px">
+  template: `<mat-grid-list cols="3" rowHeight="1:1" gutterSize="2px">
   <mat-grid-tile
     *ngFor="let card of cards; let i = index"
     [colspan]="1"
     [rowspan]="1"
-    [@rotateState]="card.split('.')[1]"
   >
+
     <div cdkDropList [cdkDropListConnectedTo]="drops" [cdkDropListData]="i">
+    <span class="absolute top-10 left-10 bottom-0 right-0 font-light text-4xl text-neutral-600">{{i}}</span>
       <div
       (click)="rotate(card,i)"
         cdkDrag
@@ -66,8 +67,10 @@ function getColor() {
           filter: (layoutService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
           background: 'center / cover no-repeat url(paths/' + card.split('.')[0] + '.png' + ')',
         }"
+            [@rotateState]="card.split('.')[1]"
       >
       </div>
+    
     </div>
   </mat-grid-tile>
 </mat-grid-list>
@@ -109,12 +112,17 @@ export class BoardComponent implements AfterViewInit  {
   }
 
   /** Based on the screen size, switch from standard to one column per row */
-  cards = 'C.1 S.0 E.1 C.0 S.0 C.2 B.0 B.0 E.2'.split(' ');
+ @Input() cards = 'C.1 S.0 E.1 C.0 S.0 C.2 B.0 B.0 E.2'.split(' ');
 
   rotate(card:string,index:number) {
     let type=card.split('.')[0]
     let state=card.split('.')[1];
-    let nextState=(parseInt(state)+1)%4
+    var nextState
+    if (state=='S'){
+       nextState=(parseInt(state)+1)%2
+    } else {
+       nextState=(parseInt(state)+1)%4
+    }
     this.cards[index]=type+'.'+nextState
   }
 }

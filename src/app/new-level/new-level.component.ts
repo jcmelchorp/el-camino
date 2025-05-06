@@ -7,6 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
 import { TileType } from '../el-camino/el-camino.model';
+import { BoardComponent } from "../board/board.component";
 
 export enum BlockTypes {
 b,c,d,e,s,t
@@ -40,6 +41,8 @@ b,c,d,e,s,t
       <input matInput type="number" [(ngModel)]="level.cols"  min="3" max="10" step="1">
     </mat-form-field>
 
+    
+    
       <mat-grid-list cols="{{level.cols.toString()}}" rowHeight="1:1" gutterSize="0px" 
       cdkDropList id="done-list" #doneList="cdkDropList" [cdkDropListData]="level.blocks" 
           [cdkDropListConnectedTo]="todoList" class="list" (cdkDropListDropped)="drop($event)"
@@ -59,7 +62,7 @@ b,c,d,e,s,t
     
   `,
   styleUrl: './new-level.component.css',
-  imports: [CdkDrag, CdkDropList,CdkDragPlaceholder,CommonModule,MatGridListModule,MatInputModule,FormsModule,ReactiveFormsModule],
+  imports: [CdkDrag, CdkDropList, CdkDragPlaceholder, CommonModule, MatGridListModule, MatInputModule, FormsModule, ReactiveFormsModule, BoardComponent],
   providers:[LayoutService],
   animations:[
     trigger('rotateState', [
