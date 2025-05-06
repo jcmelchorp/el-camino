@@ -1,59 +1,77 @@
-# ElCamino
+# El Camino
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
 
-## Development server
+**El Camino** es un juego de rompecabezas interactivo que desafía a los jugadores a resolver niveles mediante la rotación y colocación correcta de piezas en un tablero. Cada nivel presenta un conjunto de bloques con diferentes formas y orientaciones, como curvas, líneas y extremos, que deben ser alineados correctamente para completar el camino.
+<p align="center">
+<img  src="./public/previews/screenshot01.png" width="45%">)&nbsp; &nbsp; &nbsp; &nbsp;
+<img  src="./public/previews/screenshot02.png" width="45%">>
+</p>
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
+**El Camino** es un proyecto desarrollado con Angular v19 que permite a los usuarios construir y resolver caminos utilizando piezas interactivas. Este proyecto incluye funcionalidades como arrastrar y soltar, rotación de piezas y niveles dinámicos.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Características
 
-## Code scaffolding
+- **Interfaz interactiva**: Arrastra y suelta piezas para construir caminos.
+- **Rotación de piezas**: Haz clic en las piezas para rotarlas y ajustarlas al camino.
+- **Gestión de niveles**: Crea, edita y selecciona niveles personalizados.
+- **Diseño responsivo**: Compatible con dispositivos móviles y de escritorio.
+- **Temas**: Cambia entre temas claro, oscuro y sistema.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+## Dinámica del juego:
+Rotación de piezas: Los jugadores pueden hacer clic en las piezas para rotarlas y alinearlas con las demás. Cada tipo de pieza tiene restricciones específicas en cuanto a sus rotaciones posibles.
+Resolución de niveles: El objetivo es conectar todas las piezas del tablero de manera correcta, asegurándose de que las conexiones entre ellas sean coherentes.
+Progresión: Los niveles aumentan en dificultad, introduciendo más piezas y configuraciones más complejas.
+Indicadores visuales: Las piezas correctamente alineadas se marcan como "correctas", ayudando al jugador a identificar su progreso.
+Interfaz intuitiva: El diseño del juego incluye animaciones suaves y una experiencia visual atractiva, con soporte para temas claros y oscuros.
+El juego combina estrategia, lógica y paciencia, ofreciendo una experiencia desafiante y entretenida para los amantes de los rompecabezas. ¿Podrás completar todos los niveles y dominar El Camino?
 
-## Building
 
-To build the project run:
+## Instalación
 
-```bash
-ng build
-```
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/el-camino.git
+   cd el-camino
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. Instala las dependencias:
+npm install
+3. Inicia el servidor de desarrollo:
+npm start
+4. Abre tu navegador en http://localhost:4200/.
 
-## Running unit tests
+## Scripts disponibles
+npm start: Inicia el servidor de desarrollo.
+npm run build: Genera una versión optimizada para producción.
+npm test: Ejecuta las pruebas unitarias.
+npm run pwa: Genera los recursos necesarios para PWA.
+## Construcción
+Para construir el proyecto, ejecuta:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Los artefactos de construcción se almacenarán en el directorio dist/.
 
-```bash
-ng test
-```
+## Pruebas
+Ejecuta las pruebas unitarias con:
 
-## Running end-to-end tests
+## Despliegue
+Este proyecto está configurado para ser desplegado en Firebase Hosting. Para desplegarlo, ejecuta:
 
-For end-to-end (e2e) testing, run:
+## Tecnologías utilizadas
+Angular: Framework principal para la construcción de la aplicación (versión 15.2.0).
+Angular Material: Componentes de interfaz de usuario (versión 15.2.0).
+TailwindCSS: Estilización (versión 3.3.0).
+Firebase: Backend para hosting y base de datos (versión 11.0.0).
+RxJS: Manejo de flujos reactivos (versión 7.8.0).
+## Contribuciones
+Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request para sugerir mejoras o reportar errores.
 
-```bash
-ng e2e
-```
+## Licencia
+2025 © Pete Sahatt. Todos los derechos reservados.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Contacto
+GitHub
+Instagram
+X (Twitter)

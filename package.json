@@ -7,6 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "pwa": "npx pwa-asset-generator public/el-camino_logo.png .public/pwa-assets --manifest src/manifest.webmanifest --index src/index.html --type png --maskable true --opaque false --mstile --favicon",
+    "pwa:assets-icons": "npx pwa-asset-generator public/el-camino_logo.png public/pwa-assets --only-icons --index src/index.html --favicon",
+    "doc:g": "npx @compodoc/compodoc -p ./tsconfig.json --output ./docs --name \"Sistema RDS\" --customFavicon ./src/assets/icons/favicon-196.png --customLogo ./src/assets/images/rds-newlogo-transparent.png --theme material --hideGenerator --language es-ES",
     "deploy": "ng deploy",
     "clean": "rm -rf ./node_modules yarn.lock package-lock.json"
   },
@@ -27,7 +30,6 @@
     "ngx-spinner": "^19.0.0",
     "postcss": "^8.5.3",
     "primeicons": "^7.0.0",
-    "pwa-asset-generator": "^8.0.4",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.5",
     "tslib": "^2.3.0",
@@ -37,6 +39,7 @@
     "@angular-devkit/build-angular": "^19.2.7",
     "@angular/cli": "^19.2.7",
     "@angular/compiler-cli": "^19.2.0",
+    "@compodoc/compodoc": "^1.1.26",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
@@ -44,6 +47,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "pwa-asset-generator": "^8.0.4",
     "typescript": "~5.7.2"
   }
 }
