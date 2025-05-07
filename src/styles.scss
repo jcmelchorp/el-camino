@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import '~@angular/material/prebuilt-themes/azure-blue.css'; */
+@use '@angular/material' as mat;
+
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+@include mat.core();
+
+@mixin custom-component-overrides() {
+  @include mat.tabs-overrides((
+    active-label-text-color: var(--mat-sys-primary),
+    active-focus-label-text-color: var(--mat-sys-primary),
+    active-hover-label-text-color: var(--mat-sys-primary),
+    inactive-label-text-color: var(--mat-sys-outline),
+    inactive-focus-label-text-color: var(--mat-sys-on-surface),
+    inactive-hover-label-text-color: var(--mat-sys-on-surface),
+    label-text-size: 14
+  ));
+
+  @include mat.card-overrides((
+    elevated-container-color: var(--mat-sys-surface),
+    outlined-container-color: var(--mat-sys-surface)
+  ));
+
+  @include mat.button-overrides((outlined-outline-color: var(--mat-sys-outline-variant)));
+
+  @include mat.table-overrides((
+    row-item-outline-color: var(--mat-sys-outline-variant)
+  ));
+
+  @include mat.list-overrides((
+    list-item-three-line-container-height: 72px,
+    list-item-two-line-container-height: 72px,
+    list-item-one-line-container-height: 72px,
+    list-item-leading-avatar-size: 48px,
+    list-item-leading-avatar-color: var(--mat-sys-outline-variant)
+  ));
+
+  @include mat.divider-overrides((color: var(--mat-sys-outline-variant)));
+
+  @include mat.badge-overrides((background-color: var(--mat-sys-primary)));
+
+  @include mat.chips-overrides((
+    outline-width: 1.7px,
+    outline-color: var(--mat-sys-primary),
+    elevated-selected-container-color: var(--mat-sys-primary),
+    selected-label-text-color: var(--mat-sys-surface),
+    label-text-color: var(--mat-sys-primary),
+    focus-outline-color: var(--mat-sys-primary),
+  ));
+
+  @include mat.fab-overrides((
+    container-color: var(--mat-sys-primary),
+    foreground-color: var(--mat-sys-surface)
+  ));
+
+  @include mat.datepicker-overrides((
+    calendar-container-background-color: var(--mat-sys-surface),
+    calendar-container-elevation-shadow: var(--mat-sys-level1)
+  ));
+
+  @include mat.button-toggle-overrides((
+    selected-state-background-color: var(--mat-sys-primary),
+    selected-state-text-color: var(--mat-sys-surface),
+    text-color: var(--mat-sys-primary),
+    divider-color: var(--mat-sys-primary)
+  ));
+}
+
+html {
+  @include custom-component-overrides();
+  @include mat.theme((
+    color: (
+      theme-type: light,
+     
+    ),
+    density: 0
+  ));
+
+  .dark {
+    @include custom-component-overrides();
+    @include mat.theme((
+      color: (
+        theme-type: dark,
+       
+      ),
+      density: 0
+    ));
+  }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: var(--mat-sys-background); }
+.no-copy {
+    -webkit-user-select: none; /* Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Likely future */
+  }
