@@ -11,8 +11,8 @@ export const routes: Routes = [
     {
         path: '', component: LayoutComponent, children: [
             { path: '', component: ElCaminoComponent },
-            { path: 'f', component: FactoryComponent },
-            { path: 'l', component: LevelsComponent },
+            { path: 'l', component: FactoryComponent },
+            { path: 'f', component: LevelsComponent },
             { path:'b', component: BoardComponent }
         ]
     },
