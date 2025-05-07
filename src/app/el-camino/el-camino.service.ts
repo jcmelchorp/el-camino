@@ -270,10 +270,12 @@ const levs: string[] = [
   'C.1 C.2 E.0 C.1 C.2 S.1 C.0 C.3 S.1 S.1 C.0 S.0 S.0 C.3 S.1 C.1 C.2 B.0 C.1 C.3 E.2 C.0 S.0 C.3 B.0',
   'B.0 C.1 C.2 B.0 B.0 C.1 C.3 S.1 C.1 E.1 C.0 C.2 S.1 C.0 C.2 C.1 C.3 C.0 S.1 C.3 C.0 S.0 S.0 E.1 B.0',
   'C.1 E.1 B.0 E.3 C.2 S.1 C.1 C.2 B.0 S.1 S.1 S.1 C.0 C.2 S.1 S.1 C.0 C.2 S.1 S.1 C.0 S.0 C.3 C.0 C.3',
+  'E.3 C.2 E.3 S.0 C.2 C.1 C.3 C.1 C.2 S.1 C.0 S.0 C.3 S.1 S.1 B.0 B.0 C.1 C.3 S.1 B.0 B.0 C.0 S.0 C.3',
   'E.0 C.1 C.2 C.1 S.0 C.2 C.0 C.3 S.1 E.2 C.1 C.3 B.0 B.0 C.0 S.0 C.3 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0 B.0',
   'E.3 C.2 C.1 C.2 B.0 B.0 C.1 C.3 S.1 C.0 S.0 C.2 C.0 C.2 C.0 S.0 C.2 S.1 B.0 S.1 C.1 S.0 C.3 S.1 B.0 S.1 S.1 B.0 E.3 C.3 B.0 C.0 C.3 B.0 B.0 B.0',
   'B.0 C.1 S.0 C.2 C.1 C.2 C.1 C.3 C.1 C.3 S.1 S.1 C.0 C.2 C.0 S.0 C.3 S.1 B.0 E.2 C.1 C.2 C.1 C.3 C.1 E.1 S.1 S.1 C.0 C.2 C.0 S.0 C.3 C.0 S.0 C.3',
-  
+  'C.1 C.2 B.0 B.0 B.0 B.0 S.1 C.0 S.0 S.0 S.0 C.2 S.1 C.1 S.0 S.0 C.2 S.1 S.1 C.0 C.2 B.0 S.1 S.1 S.1 E.0 S.1 B.0 E.2 S.1 C.0 C.3 C.0 S.0 S.0 C.3',
+  'C.1 S.0 C.2 C.1 C.2 E.0 C.0 C.2 S.1 S.1 C.0 C.3 C.1 C.3 S.1 C.0 S.0 C.2 C.0 C.2 C.0 S.0 S.0 C.3 C.1 C.3 C.1 S.0 S.0 C.2 C.0 S.0 C.3 E.3 S.0 C.3',
 ];
 @Injectable()
 export class ElCaminoService {
