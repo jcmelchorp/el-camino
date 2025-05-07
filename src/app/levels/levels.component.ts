@@ -30,7 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
         }
         </mat-list>
     </div>
-    <app-new-level *ngIf="selectedLevel$ | async as level;else nolevel" [level]="level"></app-new-level>
+     <app-new-level *ngIf="selectedLevel$ | async as level;else nolevel" [level]="level"></app-new-level> 
     <ng-template #nolevel></ng-template>
   </div>
 `,

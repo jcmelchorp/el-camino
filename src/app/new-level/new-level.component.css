@@ -1,6 +1,6 @@
-
-
-
+:host {
+  display: block;
+}
 
 .list {
   border: solid 1px #ccc;
@@ -27,32 +27,36 @@
 }
 
 /* Highlight the list item that is being dragged. */
-.cdk-drag-preview {
-  box-sizing: border-box;
-  opacity: 0.5;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-              0 8px 10px 1px rgba(0, 0, 0, 0.14),
-              0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
+
 
 /* Animate items as they're being sorted. */
 .cdk-drop-list-dragging .cdk-drag {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* Animate an item that has been dropped. */
+.cdk-drop-list {
+  height: 100%;
+  width: 100%;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  opacity: 0.5;
+}
+
 .cdk-drag-animating {
-  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+  transition: unset;
 }
 
 .cdk-drag-placeholder {
-  opacity: 0.4;
+  display: none;
 }
 
+/* 
 .custom-placeholder {
   background: #ccc;
   border: dotted 3px #999;
   height: 80px;
   width: 80px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
+} */

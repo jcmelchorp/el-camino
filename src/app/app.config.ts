@@ -20,7 +20,8 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseOptions)), 
     provideAuth(() => getAuth()), 
     provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, 
-    provideDatabase(() => getDatabase()), provideServiceWorker('ngsw-worker.js', {
+    provideDatabase(() => getDatabase()), 
+    provideServiceWorker('ngsw-worker.js', {
             enabled: !isDevMode(),
             registrationStrategy: 'registerWhenStable:30000'
           }),

@@ -53,12 +53,6 @@
       "purpose": "maskable any"
     },
     {
-      "src": "./pwa-assets/android-chrome-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
       "src": "./pwa-assets/apple-touch-icon-72x72-precomposed.png",
       "sizes": "72x72",
       "type": "image/png",
@@ -73,18 +67,6 @@
     {
       "src": "./pwa-assets/icon-128x128.png",
       "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "./pwa-assets/android-icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "./pwa-assets/apple-icon-152x152.png",
-      "sizes": "152x152",
       "type": "image/png",
       "purpose": "maskable any"
     },
@@ -117,12 +99,6 @@
       "sizes": "96x96",
       "type": "image/png",
       "density": "2.0"
-    },
-    {
-      "src": "./pwa-assets/android-icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "density": "3.0"
     }
   ]
 }
