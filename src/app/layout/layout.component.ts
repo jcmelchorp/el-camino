@@ -8,6 +8,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { LayoutService } from './layout.service';
@@ -26,7 +28,7 @@ import { LayoutService } from './layout.service';
     RouterLink,
     AsyncPipe,
     NgIf,
-    TitleCasePipe
+    MatTooltipModule,
   ],
   template: `
     <mat-sidenav-container class="sidenav-container">
@@ -35,8 +37,8 @@ import { LayoutService } from './layout.service';
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="false">
         <mat-toolbar class="flex flex-row justify-center items-center"> 
-        <img class="rounded-full w-10 h-10" src="pwa-assets/favicon-196.png"/>
-          <button mat-button type="button" [routerLink]="['/']">
+        <img height="65px" src="pwa-assets/favicon-196.png"/>
+        <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
           </button>
         </mat-toolbar>
@@ -55,7 +57,7 @@ import { LayoutService } from './layout.service';
 </a> -->
         </mat-nav-list>
       </mat-sidenav>
-      <mat-sidenav-content>
+      <mat-sidenav-content style="background-color: var(--mat-sys-background);">
         <mat-toolbar >
           <div class="w-full flex flex-row justify-between items-center">
 <div class="flex flex-row items-center">
@@ -66,13 +68,17 @@ import { LayoutService } from './layout.service';
               (click)="drawer.toggle()">
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-            <img class="rounded-full w-10 h-10" src="pwa-assets/favicon-196.png"/>
+            <img height="65px" src="pwa-assets/favicon-196.png"/>
 
  <button *ngIf="(isHandset$ | async) || !drawer.opened" mat-button type="button"
             [routerLink]="['/']"><span class="font-semibold text-2xl">El Camino</span></button>
 </div>
 <div>
-<button mat-icon-button [mat-menu-trigger-for]="themeMenu">
+<button type="button" mat-icon-button (click)="onThemeChange()">
+            <mat-icon class="rds-icon" [matTooltip]="(_layoutService.selectedTheme()?.name === 'dark')?'Modo oscuro':'Modo claro'"
+              aria-label="Alternar tema">{{_layoutService.selectedTheme()?.name === 'dark' ? 'dark_mode' : 'light_mode'}}</mat-icon>
+          </button>
+<!-- <button mat-icon-button [mat-menu-trigger-for]="themeMenu">
             <mat-icon>{{_layoutService.selectedTheme()?.icon}}</mat-icon>
         </button>
         <mat-menu #themeMenu="matMenu">
@@ -82,7 +88,7 @@ import { LayoutService } from './layout.service';
               <span>{{theme.name|titlecase}}</span>
             </button>
           }
-        </mat-menu>
+        </mat-menu> -->
         <button mat-icon-button
         (click)="toggleFullscreen()">
             <mat-icon>fullscreen</mat-icon>
@@ -126,6 +132,9 @@ export class LayoutComponent {
       map(result => result.matches),
       shareReplay()
     );
+    onThemeChange() {
+      this._layoutService.toggleDarkTheme();
+    }
 
   enterFullscreen(element: HTMLElement): Promise<void> {
     if (element.requestFullscreen) {

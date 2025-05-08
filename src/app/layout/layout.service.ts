@@ -1,4 +1,5 @@
-import { computed, Injectable, signal } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { computed, inject, Injectable, signal } from "@angular/core";
 
 export interface AppTheme {
     name: 'light' | 'dark' | 'system',
@@ -9,6 +10,8 @@ export interface AppTheme {
     providedIn: 'root'
 })
 export class LayoutService {
+    private document = inject(DOCUMENT);
+
     appTheme = signal<'light' | 'dark' | 'system'>('system');
 
     themes: AppTheme[] = [
@@ -22,10 +25,16 @@ export class LayoutService {
     }
 
     setTheme(theme: 'light' | 'dark' | 'system') {
+        this.document.body.classList.toggle(theme);
         this.appTheme.set(theme);
     }
 
     selectedTheme = computed(() => {
         return this.themes.find(theme => theme.name === this.appTheme())
     })
+
+    toggleDarkTheme() {
+        this.document.body.classList.toggle('dark');
+        this.appTheme.update(theme => theme === 'dark' ? 'light' : 'dark');
+    }
 }
