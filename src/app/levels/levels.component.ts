@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
   template: `
   <div class="flex flex-row justify-start items-top">
     <div class="w-[150px] flex flex-col justify-start">
-       <h1 class="font-semibold text-center text-2xl">Levels</h1>
+       <div class="font-semibold text-center text-3xl">Levels</div>
        <button mat-stroked-button color="primary" (click)="newLevel()">New Level</button>
          <mat-list class="h-[70vh] overflow-y-scroll">
       

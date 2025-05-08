@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe, NgIf, TitleCasePipe } from '@angular/common';
+import { AsyncPipe, CommonModule, NgIf, TitleCasePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,6 +18,7 @@ import { LayoutService } from './layout.service';
   selector: 'app-layout',
   styleUrl: './layout.component.css',
   imports: [
+    CommonModule,
     RouterOutlet,
     MatToolbarModule,
     MatButtonModule,
@@ -27,7 +28,6 @@ import { LayoutService } from './layout.service';
     MatIconModule,
     RouterLink,
     AsyncPipe,
-    NgIf,
     MatTooltipModule,
   ],
   template: `
@@ -37,7 +37,7 @@ import { LayoutService } from './layout.service';
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="false">
         <mat-toolbar class="flex flex-row justify-center items-center"> 
-        <img height="65px" src="pwa-assets/favicon-196.png"/>
+        <img class="w-16 h-auto" src="pwa-assets/favicon-196.png"/>
         <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
           </button>
@@ -68,10 +68,12 @@ import { LayoutService } from './layout.service';
               (click)="drawer.toggle()">
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-            <img height="65px" src="pwa-assets/favicon-196.png"/>
+            
 
- <button *ngIf="(isHandset$ | async) || !drawer.opened" mat-button type="button"
-            [routerLink]="['/']"><span class="font-semibold text-2xl">El Camino</span></button>
+            <img class="w-16 h-auto" src="pwa-assets/favicon-196.png"/>
+        <button mat-button type="button" [routerLink]="['/']">
+          <span class="font-semibold text-2xl">El Camino</span>
+          </button>
 </div>
 <div>
 <button type="button" mat-icon-button (click)="onThemeChange()">

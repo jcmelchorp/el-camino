@@ -1,23 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import '~@angular/material/prebuilt-themes/azure-blue.css'; */
-@use '@angular/material' as mat;
-@use "./styles/_theme-colors.scss" as theme-colors;
-@import "./tailwidncss.css";
+// @use "./styles/_theme-colors.scss" as theme-colors;
+@import "tailwindcss";
 @import "primeicons/primeicons.css";
-
-
-html {
-  @include mat.theme(
-    (
-      color: (
-        theme-type: light,
-        primary: theme-colors.$primary-palette,
-        tertiary: theme-colors.$tertiary-palette,
-      ),
-      density: 0,
-    )
-  );
-}
 
 html, body { height: 100%; }
 body {
