@@ -21,9 +21,13 @@ import { Block, Level } from './el-camino.model';
   ],
   template: `
    <div class="pt-10" style="display: flex; flex-direction: column; justify-content: start;align-items:center">
-    
-    <button color="primary" *ngIf="!disableButton"  mat-fab extended type="button" (click)="nextLevel()">
-      <mat-icon>route</mat-icon><span>Inicio</span></button>
+    @if (!disableButton) {
+      <img width="80px" src="desert-logo.png" alt="El camino brand">
+    <button color="primary"  mat-fab extended type="button" (click)="nextLevel()" >
+      <mat-icon>route</mat-icon><span class="font-medium text-3xl">Inicio</span>
+    </button>
+    }
+
     <div *ngIf="level$ | async as level" style="width: 85%;max-width:500px; max-height:500px;padding-bottom:0;height:auto;">
       <ngx-spinner bdColor="#fff" size="medium" color="#111" type="pacman" [fullScreen]="false"><p class="font-light text-5xl"> Level:{{level.index}}</p></ngx-spinner>
       <mat-grid-list class="mat-grid-list"  cols="{{ level.cols }}"
