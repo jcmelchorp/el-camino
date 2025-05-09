@@ -36,7 +36,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
               background: 'center / cover no-repeat url(paths/' + tile.type + '.png)',
               border: (tile.success && devMode) ? 'none//1px dashed #550055' : 'none',
             }"
-            [@rotateState]="tile.state"
+            [@rotateState]="tile.randState"
             >
             <div><span></span></div>
           </mat-grid-tile>
@@ -47,7 +47,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 `,
   styleUrl: './play.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations:[
+  animations: [
     trigger('rotateState', [
       state('0', style({ transform: 'rotate(0deg)' })),
       state('1', style({ transform: 'rotate(90deg)' })),
@@ -60,12 +60,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         boxShadow: '0 0 0 rgba(0, 0, 0, 0)' // No glow initially
       })),
       state('true', style({
-         boxShadow: '0 0 30px rgba(0, 123, 255, 0.7)' // Blue glow
+        boxShadow: '0 0 30px rgba(0, 123, 255, 0.7)' // Blue glow
       })),
       transition('false <=> true', animate('1000ms ease-in-out'))
     ])
   ],
-  providers: [LevelsService,NgxSpinnerService]
+  providers: [LevelsService, NgxSpinnerService]
 })
 export class PlayComponent implements OnInit {
   layoutService: LayoutService = inject(LayoutService)
@@ -73,7 +73,7 @@ export class PlayComponent implements OnInit {
   levelCount: number = 1;
   currentLevel: Subject<number> = new Subject();
   currentLevel$ = this.currentLevel.asObservable();
-  levels:Signal<Level[]> = inject(LevelsService).levels
+  levels: Signal<Level[]> = inject(LevelsService).levels
   level: Subject<Level> = new Subject();
   level$ = this.level.asObservable();
   isLevelDone: Subject<boolean> = new Subject();
@@ -81,95 +81,110 @@ export class PlayComponent implements OnInit {
   devMode: boolean = isDevMode();
   glowState: boolean = false;
 
-    constructor(private spinner: NgxSpinnerService) {}
+  constructor(private spinner: NgxSpinnerService) { }
 
-    ngOnInit(): void {
-      this.level$ = this.currentLevel$.pipe(
-        tap((num:number)=>console.log(num)),
-        map((num: number) => this.levels().find(l=> l.index == num)!),
-        tap((level:Level)=> {
-          this.disableButton = true;
-          this.isLevelDone.next(false);
-          this.level.next(level);
-          console.log(level);
-        }),     
-      )
-    }
-  
+  ngOnInit(): void {
+    this.level$ = this.currentLevel$.pipe(
+      tap((num: number) => console.log(num)),
+      map((num: number) => this.levels().find(l => l.index == num)!),
+      tap((level: Level) => {
+        this.disableButton = true;
+        this.isLevelDone.next(false);
+        this.level.next(level);
+        console.log(level);
+      }),
+    )
+  }
+
 
   nextLevel() {
     this.currentLevel.next(this.levelCount++);
   }
 
-   rotate(level: Level, tile: Block) {
-      switch (tile.type) {
-        case 'S':
-          tile.state =(tile.state! + 1) % 2
-          break;
-        default:
-          tile.state = (tile.state! + 1) % 4
-          break;
-      }
-      // console.log(tile.currentRotation);
-      if (tile.state === tile.keyState) {
-        tile.success = true;
-         console.log(`Tile No. ${tile.index} success`);
-      } else {
-        tile.success = false;
-      }
-  
-      let blocks = level.blocks!.map((block,i) => {
-        if (i === tile.index) {
-          return tile;
-        } else {
-          return block;
-        }
-      });
-  
-      this.level.next({
-        index: level.index,
-        cols: level.cols,
-        blocks: blocks,
-      } as Level);
-  
-      this.isLevelDone$ = this.level.pipe(
-        map((level) =>  !level.blocks!.map((block) => block.success).includes(false)),
-        tap((stop) => {
-          if (stop) {
-            console.log('Done');
-          //  this.toggleGlow();
-           this.showSpinner()
-  
-            setTimeout(() => {
-              this.currentLevel.next(this.levelCount++);
-  
-            }, 500);
-          } else {
-             console.log('Not yet');
-          }
-        }),
-      );
+  rotate(level: Level, tile: Block) {
+    switch (tile.type) {
+      case 'S':
+        tile.randState = (tile.randState! + 1) % 2
+        break;
+      case 'L':
+        tile.randState = (tile.randState! + 1) % 2
+        break;
+      case 'T':
+        tile.randState = 0
+        break;
+      case 'B':
+        tile.randState = 0
+        break;
+      case 'O':
+        tile.randState = 0
+        break;
+      case 'C':
+        tile.randState = (tile.randState! + 1) % 4          
+        break;
+      case 'E':
+        tile.randState = (tile.randState! + 1) % 4          
+        break;
     }
-  
-    showSpinner() {
-      this.spinner.show();
-      setTimeout(() => {
-          /** spinner ends after 5 seconds */
-          this.spinner.hide();
-          //this.toggleGlow()
-      }, 1500);
+    // console.log(tile.currentRotation);
+    if (tile.randState === tile.state) {
+      tile.success = true;
+      console.log(`Tile No. ${tile.index} success`);
+    } else {
+      tile.success = false;
     }
 
-    
-    toggleGlow() {
-      this.glowState = this.glowState === false ? true : false;
-    }
-  
-    onGlowStart() {
-      console.log('Glow animation started');
-    }
-  
-     onGlowDone() {
-       console.log('Glow animation finished');
-    }
+    let blocks = level.blocks!.map((block, i) => {
+      if (i === tile.index) {
+        return tile;
+      } else {
+        return block;
+      }
+    });
+
+    this.level.next({
+      index: level.index,
+      cols: level.cols,
+      blocks: blocks,
+    } as Level);
+
+    this.isLevelDone$ = this.level.pipe(
+      map((level) => !level.blocks!.map((block) => block.success).includes(false)),
+      tap((stop) => {
+        if (stop) {
+          console.log('Done');
+          //  this.toggleGlow();
+          this.showSpinner()
+
+          setTimeout(() => {
+            this.currentLevel.next(this.levelCount++);
+
+          }, 500);
+        } else {
+          console.log('Not yet');
+        }
+      }),
+    );
+  }
+
+  showSpinner() {
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+      //this.toggleGlow()
+    }, 1500);
+  }
+
+
+  toggleGlow() {
+    this.glowState = this.glowState === false ? true : false;
+  }
+
+  onGlowStart() {
+    console.log('Glow animation started');
+  }
+
+  onGlowDone() {
+    console.log('Glow animation finished');
+  }
 }
