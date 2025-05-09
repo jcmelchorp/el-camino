@@ -8,10 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Block, Level } from '../el-camino/el-camino.model';
 
-export enum BlockTypes {
-b,c,d,e,s,t
-}
 
 @Component({
   selector: 'app-new-level',
@@ -34,42 +32,45 @@ b,c,d,e,s,t
     </div>
     
     <div class="inline-block mx-5">
-      <h2>Nivel {{level.levelNum}}</h2>
+      <h2>Nivel {{level.index}}</h2>
     
       <mat-form-field>
       <mat-label>Columnas</mat-label>
       <input matInput type="number" [(ngModel)]="level.cols"  min="3" max="10" step="1">
     </mat-form-field>
 
-    <mat-grid-list cols="{{level.cols.toString()}}" rowHeight="1:1" gutterSize="0px" [ngStyle]="{'width':level.cols*120+'px','height':level.cols*120+'px'}">
-  <mat-grid-tile
-    *ngFor="let card of level.blocks; let i = index"
+    <mat-grid-list cols="{{level.cols!.toString()}}" rowHeight="1:1" gutterSize="0px" [ngStyle]="{'width':level.cols!*120+'px','height':level.cols!*120+'px'}">
+ 
+    @for (card of level.blocks; track $index) {
+      <mat-grid-tile
+    class="list-item"
     [colspan]="1"
     [rowspan]="1"
   >
-
-    <div cdkDropList [cdkDropListConnectedTo]="drops" [cdkDropListData]="i">
-    <span class="absolute top-10 left-10 bottom-0 right-0 font-light text-4xl text-neutral-600">{{i}}</span>
+    <div cdkDropList [cdkDropListConnectedTo]="drops" [cdkDropListData]="$index">
+    <span class="absolute top-10 left-10 bottom-0 right-0 font-light text-4xl text-neutral-600">{{$index}}</span>
       <div
-      (click)="rotate(card,i)"
+      (click)="rotate(card,$index)"
         cdkDrag
         (cdkDragEntered)="entered($event)"
-        [cdkDragData]="i"
+        [cdkDragData]="'$index'"
         class="absolute top-0 left-0 bottom-0 right-0 flex flex-row justify-between align-top text-2xl text-neutral-200"
         [ngStyle]="{
           filter: (layoutService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
-          background: 'center / cover no-repeat url(paths/' + card.split('.')[0] + '.png' + ')',
+          background: 'center / cover no-repeat url(paths/' + card.type + '.png)',
         }"
-            [@rotateState]="card.split('.')[1]"
+            [@rotateState]="card.randState"
       >
       </div>
     
     </div>
+      
   </mat-grid-tile>
+      }
 </mat-grid-list>
     
 <div class="card">
-  <pre>{{level.blocks.join(' ')| json}}</pre>
+  <pre>{{level.blocks!.join(' ')| json}}</pre>
 </div>
       <!-- <mat-grid-list cols="{{level.cols.toString()}}" rowHeight="1:1" gutterSize="0px" 
       cdkDropList id="done-list" #doneList="cdkDropList" [cdkDropListData]="level.blocks" 
@@ -103,13 +104,16 @@ b,c,d,e,s,t
   ]
 })
 export class NewLevelComponent {
-    @Input() level:{ levelNum?: number, cols: number, blocks: string[] }={cols:3,blocks:[]};
+    @Input() level:Level={
+      cols: 3, blocks: [],
+      index: 0
+    };
   
   layoutService:LayoutService=inject(LayoutService)
   todo = ['B.0','C.0','D.0','E.0','S.0','T.0'];
   entered($event: CdkDragEnter) {
     console.log($event.item.data, $event.container.data);
-    moveItemInArray(this.level.blocks, $event.item.data, $event.container.data);
+    moveItemInArray(this.level.blocks!, $event.item.data, $event.container.data);
   }
  
 
@@ -128,16 +132,16 @@ export class NewLevelComponent {
     });
   }
 
-  rotate(card:string,index:number) {
-    let type=card.split('.')[0]
-    let state=card.split('.')[1];
+  rotate(card:Block,index:number) {
+    let type=card.type;
+    let state=card.state;
     var nextState
-    if (state=='S'){
-       nextState=(parseInt(state)+1)%2
+    if (type=='S'){
+       nextState=(state!+1)%2
     } else {
-       nextState=(parseInt(state)+1)%4
+       nextState=(state!+1)%4
     }
-    this.level.blocks[index]=type+'.'+nextState
+    this.level.blocks![index]!=type+'.'+nextState
   }
 
   drop(event: CdkDragDrop<string[]>): void {

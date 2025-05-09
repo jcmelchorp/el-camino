@@ -46,7 +46,7 @@ import { LayoutService } from './layout.service';
           <mat-icon matListItemIcon>gamepad</mat-icon> 
          <div matListItemTitle> Play</div>
 </a>
-        <a mat-list-item (click)="drawer.close()" routerLink="/f">
+        <a mat-list-item (click)="drawer.close()" routerLink="/l">
           <mat-icon matListItemIcon>factory</mat-icon> 
          <div matListItemTitle> Factory</div>
 </a>

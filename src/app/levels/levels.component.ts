@@ -22,9 +22,9 @@ import { ElCaminoService } from '../el-camino/el-camino.service';
        <button mat-stroked-button color="primary" (click)="newLevel()">New Level</button>
          <mat-list class="h-[70vh] overflow-y-scroll">
       
-       @for ( level of levels?.slice()?.reverse(); track $index) {
+       @for ( level of levels()?.slice()?.reverse(); track $index) {
          <mat-list-item (click)="selectLevel(level)">
-           <span matListItemTitle>Level: {{level.levelNum}}</span>
+           <span matListItemTitle>Level: {{level.index}}</span>
            <span matListItemLine> {{level.cols}}x{{level.cols}}</span>
          </mat-list-item>
         }
