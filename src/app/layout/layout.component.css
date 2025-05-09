@@ -18,3 +18,27 @@
 .main-content {
   min-height: calc(100vh - 120px);
 }
+
+.sonia {
+  position:absolute;
+  font-family: "Cedarville Cursive", cursive;
+  margin-top: -0.5em;
+  margin-left: 0.3em;
+  scale: 0.5;
+  font-size: 4em;
+  color: white;
+  text-shadow: 0 0 0.05em #fff, 0 0 0.2em #fe05e1, 0 0 0.3em #fe05e1;
+  transform: rotate(-18deg);
+}
+
+.sonia-alt {
+  position:absolute;
+  font-family: "Cedarville Cursive", cursive;
+  margin-top: -0.35em;
+  margin-left: -0.25em;
+  scale: 0.25;
+  font-size: 4em;
+  color: white;
+  text-shadow: 0 0 0.05em #fff, 0 0 0.2em #fe05e1, 0 0 0.3em #fe05e1;
+  transform: rotate(-15deg);
+}

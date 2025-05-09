@@ -136,3 +136,6 @@
     @include mat.elevation(8);
   }
 }
+
+$enable-negative-margins: true;
+$enable-negative-padding: true;

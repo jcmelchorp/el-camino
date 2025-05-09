@@ -36,9 +36,11 @@ import { LayoutService } from './layout.service';
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="false">
         <mat-toolbar class="flex flex-row justify-center items-center"> 
-        <img class="w-16 h-auto" src="pwa-assets/favicon-196.png"/>
+  <img width="50px" src="desert-logo.png" alt="El camino brand">
         <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
+          <div class="sonia-alt">de Sonia</div>
+
           </button>
         </mat-toolbar>
         <mat-nav-list>
@@ -70,10 +72,12 @@ import { LayoutService } from './layout.service';
             
 
  @if ((isHandset$ | async) || !drawer.opened) {
-  <img class="w-16 h-auto" src="pwa-assets/favicon-196.png"/>
+  <img width="50px" src="desert-logo.png" alt="El camino brand">
         <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
+          <div class="sonia">de Sonia</div>
           </button>
+         
  } 
  
 </div>

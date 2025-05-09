@@ -22,9 +22,11 @@ import { Block, Level } from './el-camino.model';
   template: `
    <div class="pt-10" style="display: flex; flex-direction: column; justify-content: start;align-items:center">
     @if (!disableButton) {
-      <img width="80px" src="desert-logo.png" alt="El camino brand">
-    <button color="primary"  mat-fab extended type="button" (click)="nextLevel()" >
-      <mat-icon>route</mat-icon><span class="font-medium text-3xl">Inicio</span>
+      <img class="w-40 h-auto" src="mama.png"/>
+      <button color="primary"  mat-fab extended type="button" (click)="nextLevel()" >
+      <mat-icon>route</mat-icon>
+      <span class="font-medium text-3xl">Inicio</span>
+      
     </button>
     }
 
