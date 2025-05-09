@@ -78,7 +78,7 @@ import { Block, Level } from './el-camino.model';
 export class ElCaminoComponent  implements OnInit {
   layoutService: LayoutService = inject(LayoutService)
   disableButton: boolean = false;
-  levelCount: number = 1;
+  levelCount: number = 0;
   currentLevel: Subject<number> = new Subject();
   currentLevel$ = this.currentLevel.asObservable();
   levels: Signal<Level[]|undefined> = inject(ElCaminoService).levels;

@@ -14,8 +14,9 @@ import { Block, Level } from '../el-camino/el-camino.model';
 @Component({
   selector: 'app-new-level',
   template: `
-    <div class="inline-block w-[80px] max-w-full mx-5 align-top">
-      <h2>Formas</h2>
+  <div class="flex flex-row justify-start items-start">
+    <div class="w-[80px] mx-5 align-top">
+      <span class="font-normal text-2xl">Formas</span>
     
       <div cdkDropList id="todo-list" #todoList="cdkDropList" [cdkDropListData]="todo"
           [cdkDropListConnectedTo]="drops" class="list" (cdkDropListDropped)="drop($event)">
@@ -28,11 +29,12 @@ import { Block, Level } from '../el-camino/el-camino.model';
           {{item}}
         </div>
         }
+        <div></div>
       </div>
     </div>
     
-    <div class="inline-block mx-5">
-      <h2>Nivel {{level.index}}</h2>
+    <div class="w-1/2 mx-5">
+      <span class="font-normal text-2xl">Nivel {{level.index}}</span>
     
       <mat-form-field>
       <mat-label>Columnas</mat-label>
@@ -88,7 +90,7 @@ import { Block, Level } from '../el-camino/el-camino.model';
         }
       </mat-grid-list> -->
     </div>
-    
+    </div>
   `,
   styleUrl: './new-level.component.css',
   imports: [CdkDrag, CdkDropList, CdkDragPlaceholder, CommonModule, MatGridListModule, MatButtonModule,MatInputModule, FormsModule, ReactiveFormsModule,MatIconModule],

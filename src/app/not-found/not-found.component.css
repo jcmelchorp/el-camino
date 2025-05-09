@@ -2,11 +2,11 @@
   position: relative;
   width: 100vw;
   height: calc(100vh);
-  background-image: url("/public/layer1.png"),
-    url("/public/layer2.png"),
-    url("/public/layer3.png"),
-    url("/public/layer4.png"),
-    url("/public/layer5.png");
+  background-image: url("/layer1.png"),
+    url("/layer2.png"),
+    url("/layer3.png"),
+    url("/layer4.png"),
+    url("/layer5.png");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 110% 110%;
