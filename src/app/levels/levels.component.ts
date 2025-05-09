@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { ElCaminoService } from '../el-camino/el-camino.service';
+import { Level } from '../el-camino/el-camino.model';
 
 @Component({
   selector: 'app-levels',
@@ -38,7 +39,7 @@ import { ElCaminoService } from '../el-camino/el-camino.service';
 export class LevelsComponent {
   _gameService: ElCaminoService = inject(ElCaminoService)
   levels = this._gameService.levels
-  selectedLevel: Subject<{ levelNum: number, cols: number, blocks: string[] }> = new Subject();
+  selectedLevel: Subject<Level> = new Subject();
   selectedLevel$ = this.selectedLevel.asObservable();
 
   selectLevel(level: any) {
@@ -48,6 +49,6 @@ export class LevelsComponent {
 
   newLevel() {
     let i = this.levels!.length;
-    this.selectedLevel.next({ levelNum: i, cols: 3, blocks: [] })
+    this.selectedLevel.next({ index: i, cols: 3, blocks: [] })
   }
 }
