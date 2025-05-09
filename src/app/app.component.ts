@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PWAService } from './layout/pwa.service';
+import { PWAService } from './services/pwa.service';
 
 @Component({
   selector: 'app-root',

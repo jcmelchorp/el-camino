@@ -6,16 +6,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NewLevelComponent } from './new-level/new-level.component';
 import { LevelsComponent } from './levels/levels.component';
 import { BoardComponent } from './board/board.component';
-import { PlayComponent } from './play/play.component';
 
 export const routes: Routes = [
     {
         path: '', component: LayoutComponent, children: [
             { path: '', component: ElCaminoComponent },
-            { path: 'l', component: FactoryComponent },
-            { path: 'f', component: LevelsComponent },
-            { path:'b', component: BoardComponent },
-            {  path :'play',component:PlayComponent}
+            { path: 'f', component: FactoryComponent },
+            { path: 'l', component: LevelsComponent },
         ]
     },
     { path: 'not-found', component: NotFoundComponent },

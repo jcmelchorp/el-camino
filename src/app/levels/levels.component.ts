@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { ElCaminoService } from '../el-camino/el-camino.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NewLevelComponent } from '../new-level/new-level.component';
 import { Subject } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
+import { ElCaminoService } from '../el-camino/el-camino.service';
 
 @Component({
   selector: 'app-levels',
@@ -37,11 +37,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class LevelsComponent {
   _gameService: ElCaminoService = inject(ElCaminoService)
-  levels = this._gameService.signalLevels()?.map(
-    (level, i) => {
-      return { levelNum: i, cols: Math.sqrt(level.length), blocks: level }
-    }
-  );
+  levels = this._gameService.levels
   selectedLevel: Subject<{ levelNum: number, cols: number, blocks: string[] }> = new Subject();
   selectedLevel$ = this.selectedLevel.asObservable();
 
