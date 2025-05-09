@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe, CommonModule, NgIf, TitleCasePipe } from '@angular/common';
+import { AsyncPipe, NgIf, TitleCasePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +18,6 @@ import { LayoutService } from './layout.service';
   selector: 'app-layout',
   styleUrl: './layout.component.css',
   imports: [
-    CommonModule,
     RouterOutlet,
     MatToolbarModule,
     MatButtonModule,
@@ -70,10 +69,13 @@ import { LayoutService } from './layout.service';
             </button>
             
 
-            <img class="w-16 h-auto" src="pwa-assets/favicon-196.png"/>
+ @if ((isHandset$ | async) || !drawer.opened) {
+  <img class="w-16 h-auto" src="pwa-assets/favicon-196.png"/>
         <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
           </button>
+ } 
+ 
 </div>
 <div>
 <button type="button" mat-icon-button (click)="onThemeChange()">
@@ -134,9 +136,9 @@ export class LayoutComponent {
       map(result => result.matches),
       shareReplay()
     );
-    onThemeChange() {
-      this._layoutService.toggleDarkTheme();
-    }
+  onThemeChange() {
+    this._layoutService.toggleDarkTheme();
+  }
 
   enterFullscreen(element: HTMLElement): Promise<void> {
     if (element.requestFullscreen) {

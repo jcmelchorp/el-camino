@@ -16,7 +16,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { ElCaminoService } from './el-camino.service';
-import { LevelTiles, TileExtended, TileType } from './el-camino.model';
+import { LevelTiles, TileExtended } from './el-camino.model';
 import { map, Subject, Subscription, tap } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
@@ -45,7 +45,7 @@ import { LayoutService } from '../layout/layout.service';
       [@glow]="(isLevelDone$|async)">
 
         <ng-container #container *ngFor="let tile of level.blocks; index as i">
-          <mat-grid-tile class="mat-grid-tile" (click)="rotate(level, tile)" [@rotateState]="tile.currentRotation" 
+          <mat-grid-tile class="mat-grid-tile" (click)="rotate(level, tile)" [@rotateState]="tile.rot"
           [ngStyle]="{
               filter: (themeService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
               background: 'center / cover no-repeat url(' + tile.image + ')',
@@ -119,8 +119,9 @@ themeService:LayoutService=inject(LayoutService)
   }
 
   rotate(level: LevelTiles, tile: TileExtended) {
+    tile = {...tile, success: false}
     switch (tile.type) {
-      case TileType.S:
+      case 'S':
         tile.currentRotation = (tile.currentRotation! + 90) % 180;
         break;
       default:
@@ -135,8 +136,8 @@ themeService:LayoutService=inject(LayoutService)
       tile.success = false;
     }
 
-    let blocks = level.blocks.map((block) => {
-      if (block.index === tile.index) {
+    let blocks = level.blocks.map((block,i) => {
+      if (i === tile.index) {
         return tile;
       } else {
         return block;

@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTreeModule } from '@angular/material/tree';
-import {  LevelTiles, TileExtended, TileType } from '../el-camino/el-camino.model';
+import {  LevelTiles, TileExtended } from '../el-camino/el-camino.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 
@@ -55,7 +55,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
           <mat-grid-tile class="mat-grid-tile" 
           [ngStyle]="{
               filter: (themeService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
-              background: 'center / cover no-repeat url(' + tile.image + ')',
+              background: 'center / cover no-repeat url(paths/' + tile.image + ',png)',
             }">
             <div><span></span></div>
           </mat-grid-tile>
@@ -77,12 +77,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     (cdkDragEnded)="onDragEnded($event)"
           [ngStyle]="{
               filter: (themeService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
-              background: 'center / cover no-repeat url(' + item.image + ')',
+              background: 'center / cover no-repeat url(' + item + ')',
                border: '4px dashed darkgrey' ,
               'border-radius':'25px'
             }">
                       <div  *cdkDragPreview></div>
-            <span class="font-normal text-2xl text-gray-500">{{item.index}}</span>
+            <span class="font-normal text-2xl text-gray-500">{{i}}</span>
           </mat-grid-tile >
           </ng-container>
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
@@ -113,12 +113,12 @@ export class FactoryComponent {
  
   themeService:LayoutService=inject(LayoutService)
   todo: TileExtended[] = [
-    {image:'x_blank.png', rot:0,type:TileType.B},
-    {image:'x_curve.png', rot:0,type:TileType.C},
-    {image:'x_end.png', rot:0,type:TileType.E},
-    {image:'x_line.png', rot:0,type:TileType.S},
-    // {id:'',image:'x_d_curve.png', rotation:0,type:TileType.N},
-    // {id:'',image:'x_d_line.png', rotation:0,type:TileType.N}
+    {image:'x_blank.png', rot:0,type:'B'},
+    {image:'x_curve.png', rot:0,type:'C'},
+    {image:'x_end.png', rot:0,type:'E'},
+    {image:'x_line.png', rot:0,type:'S'},
+    // {id:'',image:'x_d_curve.png', rotation:0,type:'N'},
+    // {id:'',image:'x_d_line.png', rotation:0,type:'N'}
   ];
   // done: TileExtended[] = [  ];
   transferringItem: TileExtended | undefined = undefined;
@@ -206,16 +206,18 @@ console.log( this.transferringItem )
     el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
   }
   rotate( item: TileExtended){
-  
+  // var rot =Number(item.split('.')[1]);
+  // let type =item.split('.')[0];
+    
       switch (item.type) {
-        case TileType.S:
-          item.rot = (item.rot! + 90) % 180;
+        case 'S':
+          item.rot = (item.rot! + 1) % 2;
           break;
-          case TileType.B:
-            item.rot =0;
+          case 'B':
+           item. rot =0;
             break;
         default:
-          item.rot = (item.rot! + 90) % 360;
+          item.rot = (item.rot! + 1) % 4;
           break;
       }
   }

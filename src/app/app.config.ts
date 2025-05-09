@@ -10,12 +10,14 @@ import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingServ
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { provideServiceWorker } from '@angular/service-worker';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideHttpClient(),
     provideSpinnerConfig({ type: 'pacman' }), 
     provideFirebaseApp(() => initializeApp(environment.firebaseOptions)), 
     provideAuth(() => getAuth()), 

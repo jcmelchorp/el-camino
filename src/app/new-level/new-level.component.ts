@@ -1,13 +1,11 @@
 import { Component, inject, Input, QueryList, ViewChildren } from '@angular/core';
-import { CdkDrag, CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem, copyArrayItem, CdkDragPlaceholder, CdkDragEnter } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDropList, CdkDragDrop, moveItemInArray, copyArrayItem, CdkDragPlaceholder, CdkDragEnter } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { LayoutService } from '../layout/layout.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
-import { TileType } from '../el-camino/el-camino.model';
-import { BoardComponent } from "../board/board.component";
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 

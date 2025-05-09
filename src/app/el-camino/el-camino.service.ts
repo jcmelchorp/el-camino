@@ -1,229 +1,11 @@
 import { Injectable, Signal, signal } from '@angular/core';
 import {
   LevelTiles,
-  TileExtended,
-  TileFigure,
-  tileImageFromType,
-  TileType,
+  TileExtended
 } from './el-camino.model';
 import { from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-const levels: LevelTiles[] = [
-  {
-    id: '001',
-    level: 1,
-    cols: 2,
-    blocks: [
-      { index: 1, type: TileType.E, rot: 270 },
-      { index: 2, type: TileType.C, rot: 180 },
-      { index: 3, type: TileType.B, rot: 0 },
-      { index: 4, type: TileType.E, rot: 180 },
-    ],
-  },
-  {
-    id: '002',
-    level: 2,
-    cols: 2,
-    blocks: [
-      { index: 1, type: TileType.E, rot: 270 },
-      { index: 2, type: TileType.C, rot: 180 },
-      { index: 3, type: TileType.E, rot: 270 },
-      { index: 4, type: TileType.C, rot: 270 },
-    ],
-  },
-  {
-    id: '003',
-    level: 3,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 0 },
-      { index: 3, type: TileType.C, rot: 180 },
-      { index: 4, type: TileType.C, rot: 0 },
-      { index: 5, type: TileType.E, rot: 90 },
-      { index: 6, type: TileType.S, rot: 90 },
-      { index: 7, type: TileType.B, rot: 0 },
-      { index: 8, type: TileType.B, rot: 0 },
-      { index: 9, type: TileType.E, rot: 180 },
-    ],
-  },
-  {
-    id: '004',
-    level: 4,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 0 },
-      { index: 3, type: TileType.C, rot: 180 },
-      { index: 4, type: TileType.C, rot: 0 },
-      { index: 5, type: TileType.E, rot: 90 },
-      { index: 6, type: TileType.S, rot: 90 },
-      { index: 7, type: TileType.E, rot: 270 },
-      { index: 8, type: TileType.S, rot: 0 },
-      { index: 9, type: TileType.C, rot: 270 },
-    ],
-  },
-  {
-    id: '005',
-    level: 5,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 0 },
-      { index: 3, type: TileType.E, rot: 90 },
-      { index: 4, type: TileType.S, rot: 90 },
-      { index: 5, type: TileType.C, rot: 90 },
-      { index: 6, type: TileType.C, rot: 180 },
-      { index: 7, type: TileType.C, rot: 0 },
-      { index: 8, type: TileType.C, rot: 270 },
-      { index: 9, type: TileType.E, rot: 180 },
-    ],
-  },
-  {
-    id: '006',
-    level: 6,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.C, rot: 180 },
-      { index: 3, type: TileType.B, rot: 0 },
-      { index: 4, type: TileType.S, rot: 90 },
-      { index: 5, type: TileType.C, rot: 0 },
-      { index: 6, type: TileType.E, rot: 90 },
-      { index: 7, type: TileType.C, rot: 0 },
-      { index: 8, type: TileType.E, rot: 90 },
-      { index: 9, type: TileType.B, rot: 0 },
-    ],
-  },
-  {
-    id: '007',
-    level: 7,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.E, rot: 270 },
-      { index: 2, type: TileType.C, rot: 180 },
-      { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.C, rot: 90 },
-      { index: 5, type: TileType.C, rot: 270 },
-      { index: 6, type: TileType.S, rot: 90 },
-      { index: 7, type: TileType.C, rot: 0 },
-      { index: 8, type: TileType.S, rot: 0 },
-      { index: 9, type: TileType.C, rot: 270 },
-    ],
-  },
-  {
-    id: '008',
-    level: 8,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.E, rot: 270 },
-      { index: 2, type: TileType.S, rot: 0 },
-      { index: 3, type: TileType.C, rot: 180 },
-      { index: 4, type: TileType.C, rot: 90 },
-      { index: 5, type: TileType.S, rot: 0 },
-      { index: 6, type: TileType.C, rot: 270 },
-      { index: 7, type: TileType.E, rot: 180 },
-      { index: 8, type: TileType.B, rot: 0 },
-      { index: 9, type: TileType.B, rot: 0 },
-    ],
-  },
-  {
-    id: '009',
-    level: 9,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.S, rot: 0 },
-      { index: 3, type: TileType.E, rot: 90 },
-      { index: 4, type: TileType.C, rot: 0 },
-      { index: 5, type: TileType.S, rot: 0 },
-      { index: 6, type: TileType.C, rot: 180 },
-      { index: 7, type: TileType.B, rot: 0 },
-      { index: 8, type: TileType.B, rot: 0 },
-      { index: 9, type: TileType.E, rot: 180 },
-    ],
-  },
-  {
-    id: '010',
-    level: 10,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.C, rot: 180 },
-      { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.S, rot: 90 },
-      { index: 5, type: TileType.C, rot: 0 },
-      { index: 6, type: TileType.C, rot: 270 },
-      { index: 7, type: TileType.C, rot: 0 },
-      { index: 8, type: TileType.E, rot: 90 },
-      { index: 9, type: TileType.B, rot: 0 },
-    ],
-  },
-  {
-    id: '011',
-    level: 11,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.E, rot: 0 },
-      { index: 2, type: TileType.B, rot: 0 },
-      { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.C, rot: 0 },
-      { index: 5, type: TileType.C, rot: 180 },
-      { index: 6, type: TileType.S, rot: 90 },
-      { index: 7, type: TileType.B, rot: 0 },
-      { index: 8, type: TileType.C, rot: 0 },
-      { index: 9, type: TileType.C, rot: 270 },
-    ],
-  },
-  {
-    id: '012',
-    level: 12,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.C, rot: 180 },
-      { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.S, rot: 90 },
-      { index: 5, type: TileType.S, rot: 90 },
-      { index: 6, type: TileType.S, rot: 90 },
-      { index: 7, type: TileType.E, rot: 180 },
-      { index: 8, type: TileType.C, rot: 0 },
-      { index: 9, type: TileType.C, rot: 270 },
-    ],
-  },
-  {
-    id: '013',
-    level: 13,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.B, rot: 90 },
-      { index: 2, type: TileType.C, rot: 90 },
-      { index: 3, type: TileType.C, rot: 180 },
-      { index: 4, type: TileType.E, rot: 0 },
-      { index: 5, type: TileType.S, rot: 90 },
-      { index: 6, type: TileType.E, rot: 180 },
-      { index: 7, type: TileType.C, rot: 0 },
-      { index: 8, type: TileType.C, rot: 270 },
-      { index: 9, type: TileType.B, rot: 0 },
-    ],
-  },
-  {
-    id: '014',
-    level: 14,
-    cols: 3,
-    blocks: [
-      { index: 1, type: TileType.C, rot: 90 },
-      { index: 2, type: TileType.E, rot: 90 },
-      { index: 3, type: TileType.E, rot: 0 },
-      { index: 4, type: TileType.S, rot: 90 },
-      { index: 5, type: TileType.C, rot: 90 },
-      { index: 6, type: TileType.C, rot: 270 },
-      { index: 7, type: TileType.C, rot: 0 },
-      { index: 8, type: TileType.C, rot: 270 },
-      { index: 9, type: TileType.B, rot: 0 },
-    ],
-  },
-];
+
 const levs: string[] = [
   'E.3 E.1 B.0 B.0',
   'E.3 C.2 B.0 E.2',
@@ -308,42 +90,45 @@ export class ElCaminoService {
     }
 
   getBlocks(): Observable<LevelTiles[]> {
-    return of(levels).pipe(
+    return of(levs).pipe(
       map((levels) =>
-        levels.map((level) => {
-          let blocks = level.blocks.map((tile) => {
+        levels.map((level,j) => {
+          var blocks= level.split(' ').map((tile,i) => {
+            let type= tile.split('.')[0];
+            var rot =Number(tile.split('.')[1]);
+
             let iniRot
-            if (tile.type == TileType.E || tile.type == TileType.C) iniRot = (Math.floor(Math.random() * 4) * 90) % 360;
-            if (tile.type == TileType.S) iniRot = (Math.floor(Math.random() * 2) * 90) % 180;
-            if (iniRot == tile.rot) {
-              switch (tile.type) {
-                case TileType.E:
-                  iniRot = (iniRot + 90) % 360;
+            if (type == 'E' || type == 'C') iniRot = (Math.floor(Math.random() * 4) ) % 4;
+            if (type == 'S') iniRot = (Math.floor(Math.random() * 2) ) % 2;
+            if (iniRot == rot) {
+              switch (type) {
+                case 'E':
+                  iniRot = (iniRot + 1) % 4;
                   break;
-                case TileType.C:
-                  iniRot = (iniRot + 90) % 360;
+                case 'C':
+                  iniRot = (iniRot + 1) % 4;
                   break;
-                case TileType.S:
-                  iniRot = (iniRot + 90) % 180;
+                case 'S':
+                  iniRot = (iniRot + 1) % 2;
                   break;
-                case TileType.B:
+                case 'B':
                   iniRot = 0;
                   break;
               }
             }
             return {
-              index: tile.index,
-              type: tile.type,
-              image: tileImageFromType(tile.type),
+              index: i,
+              type: type,
+              image: 'paths/'+type+'.png',
               currentRotation: iniRot,
-              correctRotation: tile.rot,
-              success: (tile.type == TileType.B || iniRot == tile.rot)
+              correctRotation: rot,
+              success: (type == 'B'|| iniRot == rot)
             } as TileExtended;
           });
           return {
-            id: level.id,
-            level: level.level,
-            cols: level.cols,
+            id: j.toString(),
+            level: j,
+            cols: Math.sqrt(blocks.length),
             blocks: blocks,
           } as LevelTiles;
         }),
