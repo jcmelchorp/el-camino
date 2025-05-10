@@ -9,13 +9,14 @@
 }
 
 .maze-form button {
-  padding: 0.25rem;
-  margin: 0 0.5rem;
+  // padding: 0.25rem;
+  // margin: 0 0.5rem;
 }
 
 .arrows button {
-  font-size: xx-large;
+ // font-size: 25px;
+  margin: 25px;
+  scale: 1.5;
   user-select: none;
   cursor: pointer;
-  margin: auto 0.25rem;
 }

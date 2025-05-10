@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { LayoutService } from '../layout/layout.service';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-maze',
@@ -23,7 +23,8 @@ import { LayoutService } from '../layout/layout.service';
     FormsModule,
     MatButtonModule,
     MatSliderModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
   ],
   styleUrls: ['./maze.component.scss'],
   template: `
@@ -68,7 +69,8 @@ import { LayoutService } from '../layout/layout.service';
           >
             Nuevo
           </button>
-          <button mat-stroked-button color="warn" (click)="drawSolution()"
+          <button             mat-raised-button
+          color="warn" (click)="drawSolution()"
             >Solución</button
           >
           <button
@@ -81,54 +83,44 @@ import { LayoutService } from '../layout/layout.service';
           </button>
         </div>
         </div>
-    <div class="flex flex-col md:flex-row items-center justify-center">
+    <div class="w-full flex flex-col md:flex-row items-center justify-center">
       <section class="card">
         <canvas [ngStyle]="{
               filter: (_layoutService.selectedTheme()?.name === 'dark') ? 'invert(100%)' : 'invert(0%)',
             }" id="maze"></canvas>
       </section>
-      <section class="p-10">
+      <section class="p-0">
         <div class="arrows flex flex-col items-center">
           <div>
             <button
-              color="info"
-              rounded
-              icon="pi pi-arrow-up"
+              color="secondary"
+              mat-fab
               (click)="move('Up')"
-              title="move up"
-            ></button>
-          </div>
+              ><mat-icon>north</mat-icon></button>
+              </div>
           <div>
             <button
-              color="info"
-              rounded
-              icon="pi pi-arrow-left"
+              color="secondary"
+              mat-fab
               (click)="move('Left')"
-              title="move left"
-            ></button>
-            <button
-              color="info"
-              rounded
-              icon="pi pi-backward"
+              ><mat-icon>west</mat-icon></button>
+              <button
+              color="secondary"
+              mat-fab
               (click)="undo()"
-              title="undo 5 steps"
-            ></button>
-            <button
-              color="info"
-              rounded
-              icon="pi pi-arrow-right"
+              ><mat-icon>undo</mat-icon>5</button>
+              <button
+              color="secondary"
+              mat-fab
               (click)="move('Right')"
-              title="move right"
-            ></button>
-          </div>
+              ><mat-icon>east</mat-icon></button>
+              </div>
           <div>
             <button
-              color="info"
-              rounded
-              icon="pi pi-arrow-down"
+              color="secondary"
+              mat-fab
               (click)="move('Down')"
-              title="move down"
-            ></button>
+            ><mat-icon>south</mat-icon></button>
           </div>
         </div>
       </section>
@@ -136,8 +128,8 @@ import { LayoutService } from '../layout/layout.service';
 })
 export class MazeComponent implements AfterViewInit {
   _layoutService: LayoutService = inject(LayoutService)
-  row = 20;
-  col = 45;
+  row = 35;
+  col = 25;
   private maze!: Maze;
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
@@ -147,7 +139,7 @@ export class MazeComponent implements AfterViewInit {
   private readonly solutionPathColor = 'pink';
   private readonly myPathColor = 'darkorange';
   private readonly myStrokeColor = 'black';
-  private readonly myPathThickness = 8;
+  private readonly myPathThickness = 12;
   private readonly solutionPathThickness = 5;
   private gameOver = false;
   private myPath: Cell[] = [];
