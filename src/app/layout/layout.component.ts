@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe, NgIf, TitleCasePipe } from '@angular/common';
+import { AsyncPipe, CommonModule, NgIf, TitleCasePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +19,7 @@ import { LayoutService } from './layout.service';
   styleUrl: './layout.component.css',
   imports: [
     RouterOutlet,
+    CommonModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -36,7 +37,9 @@ import { LayoutService } from './layout.service';
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="false">
         <mat-toolbar class="flex flex-row justify-center items-center"> 
-  <img width="50px" src="desert-logo.png" alt="El camino brand">
+  <img width="50px" src="desert-logo.png" alt="El camino brand" [ngStyle]="{
+              filter: (_layoutService.selectedTheme()?.name === 'dark') ? 'invert(100%)' : 'invert(0%)',
+            }">
         <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
           <div class="sonia-alt">de Sonia</div>
@@ -45,12 +48,18 @@ import { LayoutService } from './layout.service';
         </mat-toolbar>
         <mat-nav-list>
         <a mat-list-item (click)="drawer.close()" routerLink="/">
-          <mat-icon matListItemIcon>gamepad</mat-icon> 
-         <div matListItemTitle> Play</div>
+          <mat-icon matListItemIcon>route</mat-icon> 
+         <div matListItemTitle>El Camino Flip</div>
 </a>
         <a mat-list-item (click)="drawer.close()" routerLink="/l">
-          <mat-icon matListItemIcon>factory</mat-icon> 
-         <div matListItemTitle> Factory</div>
+          <mat-icon matListItemIcon>factory_outline</mat-icon> 
+         <div matListItemTitle>El Camino Flip Factory</div>
+</a>
+<a mat-list-item (click)="drawer.close()" routerLink="/m">
+<img matListItemIcon width="50px" src="maze-svgrepo-com.png" alt="El camino brand"  [ngStyle]="{
+              filter: (_layoutService.selectedTheme()?.name === 'dark') ? 'invert(100%)' : 'invert(0%)',
+            }">
+         <div matListItemTitle>El Camino Maze</div>
 </a>
 <!-- <a mat-list-item routerLink="/a">
           <mat-icon matListItemIcon>info</mat-icon> 
@@ -72,7 +81,9 @@ import { LayoutService } from './layout.service';
             
 
  @if ((isHandset$ | async) || !drawer.opened) {
-  <img width="50px" src="desert-logo.png" alt="El camino brand">
+  <img width="50px" src="desert-logo.png" alt="El camino brand" [ngStyle]="{
+              filter: (_layoutService.selectedTheme()?.name === 'dark') ? 'invert(100%)' : 'invert(0%)',
+            }">
         <button mat-button type="button" [routerLink]="['/']">
           <span class="font-semibold text-2xl">El Camino</span>
           <div class="sonia">de Sonia</div>

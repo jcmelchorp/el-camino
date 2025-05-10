@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTreeModule } from '@angular/material/tree';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Block, Level } from '../el-camino/el-camino.model';
+import { Block, Level } from '../el-camino-flip/el-camino-flip.model';
 
 
 

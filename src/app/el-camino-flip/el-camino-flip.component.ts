@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit, Signal } from '@angular/core';
-import { ElCaminoService } from './el-camino.service';
+import { ElCaminoFlipService } from './el-camino-flip.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { map, Subject, tap } from 'rxjs';
 import { LayoutService } from '../layout/layout.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Block, Level } from './el-camino.model';
+import { Block, Level } from './el-camino-flip.model';
 
 @Component({
   selector: 'app-play',
@@ -75,15 +75,15 @@ import { Block, Level } from './el-camino.model';
       transition('false <=> true', animate('1000ms ease-in-out'))
     ])
   ],
-  providers: [ElCaminoService, NgxSpinnerService]
+  providers: [ElCaminoFlipService, NgxSpinnerService]
 })
-export class ElCaminoComponent  implements OnInit {
+export class ElCaminoFlipComponent  implements OnInit {
   layoutService: LayoutService = inject(LayoutService)
   disableButton: boolean = false;
   levelCount: number = 0;
   currentLevel: Subject<number> = new Subject();
   currentLevel$ = this.currentLevel.asObservable();
-  levels: Signal<Level[]|undefined> = inject(ElCaminoService).levels;
+  levels: Signal<Level[]|undefined> = inject(ElCaminoFlipService).levels;
   level: Subject<Level> = new Subject();
   level$ = this.level.asObservable();
   isLevelDone: Subject<boolean> = new Subject();

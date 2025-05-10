@@ -2,12 +2,12 @@ import { Injectable, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, Observable, tap } from 'rxjs';
-import { Block, Level } from './el-camino.model';
+import { Block, Level } from './el-camino-flip.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ElCaminoService {
+export class ElCaminoFlipService {
   levels: Signal<Level[]|undefined>
   constructor(private http: HttpClient) {
     this.levels = toSignal(this.getAll())
