@@ -106,13 +106,11 @@ import { Block, Level } from '../el-camino-flip/el-camino-flip.model';
   ]
 })
 export class NewLevelComponent {
-    @Input() level:Level={
-      cols: 3, blocks: [],
-      index: 0
-    };
+    @Input()
+  level!: Level;
   
   layoutService:LayoutService=inject(LayoutService)
-  todo = ['B.0','C.0','D.0','E.0','S.0','T.0'];
+  todo = ['B.0','C.0','D.0','E.0','L.0','O.0','S.0','T.0'];
   entered($event: CdkDragEnter) {
     console.log($event.item.data, $event.container.data);
     moveItemInArray(this.level.blocks!, $event.item.data, $event.container.data);

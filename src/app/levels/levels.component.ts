@@ -48,7 +48,14 @@ export class LevelsComponent {
   }
 
   newLevel() {
-    let i = this.levels!.length;
-    this.selectedLevel.next({ index: i, cols: 3, blocks: [] })
+    this.selectedLevel.next(
+      {
+         index: this.levels!.length, 
+         cols: 3, 
+         blocks: [
+          { },{ },{ },{ },{ },{ },{ },{ }
+        ] 
+      }
+    )
   }
 }
