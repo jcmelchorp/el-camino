@@ -29,38 +29,36 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./maze.component.scss'],
   template: `
       <div class="flex flex-col md:flex-row w-full md:w-full items-center justify-between gap-10">
-          <div class="maze-form">
-            <label for="nRow">Filas</label>
+          <div class="flex flex-row justify-center">
+            <mat-form-field appearance="outline">
+          <mat-label for="nRow">Filas</mat-label>
             <input
               matInput
               id="nRow"
-              type="number"
               [(ngModel)]="row"
               min="1"
               max="50"
             />
-            <mat-slider min="1" max="50" step="1" showTickMarks discrete >
-          <input [(ngModel)]="row" matSliderThumb>
+            </mat-form-field>
+            <mat-slider  min="1" max="50" step="1" showTickMarks discrete [disabled]="disabled">
+          <input class="w-1/3 m-8" [(ngModel)]="row" matSliderThumb>
           </mat-slider>
-          </div>
-         
-
-          <div class="block maze-form">
-            <label for="nCol">Columnas</label>
+           <mat-form-field  appearance="outline">
+            <mat-label for="nCol">Columnas</mat-label>
             <input
               matInput
               id="nCol"
-              type="number"
               [(ngModel)]="col"
               min="1"
               max="50"
             />
-            <mat-slider min="1" max="50" step="1" showTickMarks discrete >
+             </mat-form-field>
+            <mat-slider class="w-1/3 m-8" min="1" max="50" step="1" showTickMarks discrete [disabled]="disabled">
   <input [(ngModel)]="col" matSliderThumb>
 </mat-slider>
           </div>
          
-<div class="flex flex-row justify-around gap-10">
+<div class="flex flex-row justify-around">
           <button
             mat-raised-button
             color="success"
@@ -90,15 +88,15 @@ import { MatIconModule } from '@angular/material/icon';
             }" id="maze"></canvas>
       </section>
       <section class="p-0">
-        <div class="arrows flex flex-col items-center">
-          <div>
+        <div class="arrows fixed bottom-0 left-0 right-0">
+          <div class="flex flex-row justify-center items-center">
             <button
               color="secondary"
               mat-fab
               (click)="move('Up')"
               ><mat-icon>north</mat-icon></button>
-              </div>
-          <div>
+            </div>
+            <div class="flex flex-row justify-center items-center">
             <button
               color="secondary"
               mat-fab
@@ -114,9 +112,9 @@ import { MatIconModule } from '@angular/material/icon';
               mat-fab
               (click)="move('Right')"
               ><mat-icon>east</mat-icon></button>
-              </div>
-          <div>
-            <button
+           </div>
+           <div class="flex flex-row justify-center items-center">
+           <button
               color="secondary"
               mat-fab
               (click)="move('Down')"
@@ -146,6 +144,7 @@ export class MazeComponent implements AfterViewInit {
   private currentCell!: Cell;
   showTestButton = false;
   busy = false;
+  disabled: boolean = false;
 
   ngAfterViewInit() {
     this.canvas = <HTMLCanvasElement>document.getElementById('maze');
