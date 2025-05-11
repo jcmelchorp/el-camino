@@ -46,15 +46,13 @@ import { SnackService } from "./snack.service";
             console.log(evt);
             if (evt.type === 'VERSION_READY') {
               this.$isAnyNewUpdateAvailable.next(true);
-              
-  
               this.snackService
                 .messageWithReload(
                   'Se han hecho cambios desde la última visita. Actualiza la página para continuar',
                   'Ok',
                 )
                 ?.afterDismissed()
-                .subscribe(() => window.location.reload()
+                .subscribe(() => console.log('refresh')
               )
             }
           }),
