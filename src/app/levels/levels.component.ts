@@ -22,7 +22,6 @@ import { Level } from '../el-camino-flip/el-camino-flip.model';
        <div class="font-semibold text-center text-3xl">Levels</div>
        <button mat-stroked-button color="primary" (click)="newLevel()">New Level</button>
          <mat-list class="h-[70vh] overflow-y-scroll">
-      
        @for ( level of levels()?.slice()?.reverse(); track $index) {
          <mat-list-item (click)="selectLevel(level)">
            <span matListItemTitle>Level: {{level.index}}</span>
@@ -50,11 +49,11 @@ export class LevelsComponent {
   newLevel() {
     this.selectedLevel.next(
       {
-         index: this.levels!.length, 
-         cols: 3, 
-         blocks: [
-          { },{ },{ },{ },{ },{ },{ },{ }
-        ] 
+        index: this.levels!.length,
+        cols: 3,
+        blocks: [
+          {}, {}, {}, {}, {}, {}, {}, {}
+        ]
       }
     )
   }

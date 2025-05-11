@@ -2,25 +2,9 @@
   display: block;
 }
 
-.list {
-  border: solid 1px #ccc;
-  /* min-height: 80px; */
-  /* background: white; */
-  border-radius: 4px;
-  display: block;
-  overflow: hidden;
-}
 
-.list-item {
-  height: 80px;
-  height: 80px;;
-  padding: 0px 10px;
-  border-bottom: solid 1px #ccc;
-  box-sizing: border-box;
-  cursor: move;
-  color: white;
-  font-size: 14px;
-}
+
+
 
 .list-item:last-child {
   border: none;

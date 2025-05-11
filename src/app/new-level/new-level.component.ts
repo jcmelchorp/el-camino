@@ -17,19 +17,16 @@ import { Block, Level } from '../el-camino-flip/el-camino-flip.model';
   <div class="flex flex-row justify-start items-start">
     <div class="w-[80px] mx-5 align-top">
       <span class="font-normal text-2xl">Formas</span>
-    
-      <div cdkDropList id="todo-list" #todoList="cdkDropList" [cdkDropListData]="todo"
-          [cdkDropListConnectedTo]="drops" class="list" (cdkDropListDropped)="drop($event)">
+      <div   class="block overflow-hidden" >
         @for (item of todo; track item) {
-          <div class="list-item" cdkDrag [ngStyle]="{
+          <div class="w-[80px] h-[80px]" (click)="insertBlock()"
+          [ngStyle]="{
             filter: (layoutService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
             background: 'center / cover no-repeat url(paths/' + item.split('.')[0] + '.png' + ')',
             }">
-        <div class="custom-placeholder" *cdkDragPlaceholder></div>
-          {{item}}
+          <span>{{item}}</span>
         </div>
         }
-        <div></div>
       </div>
     </div>
     
@@ -93,7 +90,7 @@ import { Block, Level } from '../el-camino-flip/el-camino-flip.model';
     </div>
   `,
   styleUrl: './new-level.component.css',
-  imports: [CdkDrag, CdkDropList, CdkDragPlaceholder, CommonModule, MatGridListModule, MatButtonModule,MatInputModule, FormsModule, ReactiveFormsModule,MatIconModule],
+  imports: [CdkDrag, CdkDropList, CommonModule, MatGridListModule, MatButtonModule,MatInputModule, FormsModule, ReactiveFormsModule,MatIconModule],
   providers:[LayoutService],
   animations:[
     trigger('rotateState', [
@@ -155,5 +152,9 @@ export class NewLevelComponent {
     } else if (event.container.id === 'todo-list') {
       event.previousContainer.data.splice(event.previousIndex, 1);
     }
+  }
+
+  insertBlock(){
+
   }
 }

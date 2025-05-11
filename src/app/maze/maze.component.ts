@@ -28,7 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   styleUrls: ['./maze.component.scss'],
   template: `
-      <div class="flex flex-col md:flex-row w-full md:w-full items-center justify-between gap-10">
+      <div *ngIf="!disabled" class="flex flex-col md:flex-row w-full md:w-full items-center justify-between gap-10">
           <div class="flex flex-row justify-center">
             <mat-form-field appearance="outline">
           <mat-label for="nRow">Filas</mat-label>
@@ -58,16 +58,19 @@ import { MatIconModule } from '@angular/material/icon';
 </mat-slider>
           </div>
          
-<div class="flex flex-row justify-around">
+
+        </div>
+    <div class="w-full flex flex-col md:flex-row items-center justify-center">
+    <div class="flex flex-row justify-between">
           <button
-            mat-raised-button
+            mat-stroked-button
             color="success"
             (click)="drawMaze()"
             [disabled]="busy"
           >
             Nuevo
           </button>
-          <button             mat-raised-button
+          <button             mat-stroked-button
           color="warn" (click)="drawSolution()"
             >Solución</button
           >
@@ -80,14 +83,14 @@ import { MatIconModule } from '@angular/material/icon';
             Test
           </button>
         </div>
-        </div>
-    <div class="w-full flex flex-col md:flex-row items-center justify-center">
-      <section class="card">
+    <section class="card">
         <canvas [ngStyle]="{
               filter: (_layoutService.selectedTheme()?.name === 'dark') ? 'invert(100%)' : 'invert(0%)',
-            }" id="maze"></canvas>
+            }" id="maze">
+            </canvas>
       </section>
-      <section class="p-0">
+      <!-- <ng-template #showControls> -->
+        <section  class="p-0">
         <div class="arrows fixed bottom-0 left-0 right-0">
           <div class="flex flex-row justify-center items-center">
             <button
@@ -121,23 +124,24 @@ import { MatIconModule } from '@angular/material/icon';
             ><mat-icon>south</mat-icon></button>
           </div>
         </div>
-      </section>
+        </section>
+          <!-- </ng-template> -->
     </div>`,
 })
 export class MazeComponent implements AfterViewInit {
   _layoutService: LayoutService = inject(LayoutService)
   row = 35;
-  col = 25;
+  col = 15;
   private maze!: Maze;
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
-  private readonly cellSize = 20; // length of cell edge
-  private readonly cellEdgeThickness = 1; // thickness of cell edge
-  private readonly cellBackground = 'lightgray';//'transparent'; //'var(--surface-card)'; // background color of cell
+  private readonly cellSize = 18; // length of cell edge
+  private readonly cellEdgeThickness = 2; // thickness of cell edge
+  private readonly cellBackground = '#efefef';//'transparent'; //'var(--surface-card)'; // background color of cell
   private readonly solutionPathColor = 'pink';
   private readonly myPathColor = 'darkorange';
-  private readonly myStrokeColor = 'black';
-  private readonly myPathThickness = 12;
+  private readonly myStrokeColor = 'darkblue';
+  private readonly myPathThickness = 9;
   private readonly solutionPathThickness = 5;
   private gameOver = false;
   private myPath: Cell[] = [];
@@ -149,10 +153,18 @@ export class MazeComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.canvas = <HTMLCanvasElement>document.getElementById('maze');
     this.ctx = this.canvas.getContext('2d')!;
-    this.drawMaze();
+    // this.drawMaze();
+  }
+
+  reset() {
+    this.disabled = !this.disabled;
   }
 
   drawMaze() {
+    this.disabled = !this.disabled;
+
+    // this.canvas = <HTMLCanvasElement>document.getElementById('maze');
+    // this.ctx = this.canvas.getContext('2d')!;
     this.busy = true;
     this.validateInputs();
 
@@ -171,6 +183,7 @@ export class MazeComponent implements AfterViewInit {
 
     this.initPlay();
     this.busy = false;
+
   }
 
   initPlay() {
