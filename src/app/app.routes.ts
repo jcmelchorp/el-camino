@@ -14,9 +14,7 @@ export const routes: Routes = [
         path: '', component: LayoutComponent, children: [
             { path: '', component: ElCaminoFlipComponent },
             { path: 'factory',component:ElCaminoFlipFactoryComponent},
-            { path: 'f', component: FactoryComponent },
-            { path: 'l', component: LevelsComponent },
-            { path:'m',component:MazeComponent}
+            { path:'maze',component:MazeComponent}
         ]
     },
     { path: 'not-found', component: NotFoundComponent },

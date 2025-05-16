@@ -51,11 +51,11 @@ import { LayoutService } from './layout.service';
           <mat-icon matListItemIcon>route</mat-icon> 
          <div matListItemTitle>El Camino Flip</div>
 </a>
-        <a mat-list-item (click)="drawer.close()" routerLink="/l">
+        <a mat-list-item (click)="drawer.close()" routerLink="/factory">
           <mat-icon matListItemIcon>factory_outline</mat-icon> 
          <div matListItemTitle>El Camino Flip Factory</div>
 </a>
-<a mat-list-item (click)="drawer.close()" routerLink="/m">
+<a mat-list-item (click)="drawer.close()" routerLink="/maze">
 <img matListItemIcon width="50px" src="maze-svgrepo-com.png" alt="El camino brand"  [ngStyle]="{
               filter: (_layoutService.selectedTheme()?.name === 'dark') ? 'invert(100%)' : 'invert(0%)',
             }">
