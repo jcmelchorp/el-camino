@@ -41,7 +41,9 @@
               "src/styles/tokens.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "public/catch-the-cat/phaser.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -117,7 +119,9 @@
               "src/styles/tokens.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "public/catch-the-cat/phaser.min.js"
+          ]
           }
         },
         "deploy": {

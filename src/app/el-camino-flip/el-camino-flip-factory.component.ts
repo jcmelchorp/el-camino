@@ -17,7 +17,7 @@ import { Block } from "./el-camino-flip.model";
   imports: [CommonModule, MatGridListModule, MatSliderModule, NgFor, MatButtonModule, MatCardModule, MatInputModule, FormsModule],
   template: `
     <div  class="flex flex-row flex-wrap justify-center gap-2">
-          <button mat-mini-fab *ngFor="let item of todo" (click)="insertBlock(item)"
+          <button mat-mini-fab  *ngFor="let item of todo" (click)="insertBlock(item)"
           [ngStyle]="{
             filter: (layoutService.appTheme() == 'dark') ? 'invert(0%)' : 'invert(100%)',
             width: '55px',
@@ -82,6 +82,10 @@ import { Block } from "./el-camino-flip.model";
   styles: [`
     :host {
       display: block;
+    }
+
+    .formas {
+
     }
     `], changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [LayoutService],

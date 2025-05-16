@@ -61,6 +61,15 @@ import { LayoutService } from './layout.service';
             }">
          <div matListItemTitle>El Camino Maze</div>
 </a>
+
+<a mat-list-item (click)="drawer.close()" routerLink="/catch-the-cat">
+          <mat-icon matListItemIcon>cat</mat-icon> 
+         <div matListItemTitle>Atrapa al gato</div>
+</a>
+<a mat-list-item (click)="drawer.close()" routerLink="/space-invaders">
+          <mat-icon matListItemIcon>space</mat-icon> 
+         <div matListItemTitle>Invasores del espacio</div>
+</a>
 <!-- <a mat-list-item routerLink="/a">
           <mat-icon matListItemIcon>info</mat-icon> 
          <div matListItemTitle> About</div>
