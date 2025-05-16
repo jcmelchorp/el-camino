@@ -7,11 +7,13 @@ import { NewLevelComponent } from './new-level/new-level.component';
 import { LevelsComponent } from './levels/levels.component';
 import { BoardComponent } from './board/board.component';
 import { MazeComponent } from './maze/maze.component';
+import { ElCaminoFlipFactoryComponent } from './el-camino-flip/el-camino-flip-factory.component';
 
 export const routes: Routes = [
     {
         path: '', component: LayoutComponent, children: [
             { path: '', component: ElCaminoFlipComponent },
+            { path: 'factory',component:ElCaminoFlipFactoryComponent},
             { path: 'f', component: FactoryComponent },
             { path: 'l', component: LevelsComponent },
             { path:'m',component:MazeComponent}
