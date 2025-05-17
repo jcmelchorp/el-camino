@@ -57,12 +57,11 @@ export class CatchTheCatComponent implements OnInit {
   radius!: number;
    blocked: boolean=false;
 
-
   ngOnInit() {
     this.blocked = false;
-     this.width = 20;
+     this.width = 15;
     this.height = 15;
-    this.radius = 12;
+    this.radius = 10;
     this.loadScript();
   }
 
