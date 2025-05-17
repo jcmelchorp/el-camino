@@ -91,7 +91,7 @@ export class SpaceInvadersComponent implements OnInit
    triggerKeyEvent(event: MouseEvent) {
     const keyboardEvent = new KeyboardEvent('press', {
        key: 'ArrowLeft',
-       code: 'arrowleft'
+       code: 'ArrowLeft'
      });
      document.dispatchEvent(keyboardEvent);
    }
