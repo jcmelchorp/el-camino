@@ -85,8 +85,8 @@
   //
   // ###################################################################
   var IS_CHROME = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-  var CANVAS_WIDTH = 800;
-  var CANVAS_HEIGHT = 450;
+  var CANVAS_WIDTH = 400;
+  var CANVAS_HEIGHT = 480;
   var SPRITE_SHEET_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAEACAYAAAADRnAGAAACGUlEQVR42u3aSQ7CMBAEQIsn8P+/hiviAAK8zFIt5QbELiTHmfEYE3L9mZE9AAAAqAVwBQ8AAAD6THY5CgAAAKbfbPX3AQAAYBEEAADAuZrC6UUyfMEEAIBiAN8OePXnAQAAsLcmmKFPAQAAgHMbm+gbr3Sdo/LtcAAAANR6GywPAgBAM4D2JXAAABoBzBjA7AmlOx8AAEAzAOcDAADovTc4vQim6wUCABAYQG8QAADd4dPd2fRVYQAAANQG0B4HAABAawDnAwAA6AXgfAAAALpA2uMAAABwPgAAgPoAM9Ci/R4AAAD2dmqcEQIAIC/AiQGuAAYAAECcRS/a/cJXkUf2AAAAoBaA3iAAALrD+gIAAADY9baX/nwAAADNADwFAADo9YK0e5FMX/UFACA5QPSNEAAAAHKtCekmDAAAAADvBljtfgAAAGgMMGOrunvCy2uCAAAACFU6BwAAwF6AGQPa/XsAAADYB+B8AAAAtU+ItD4OAwAAAFVhAACaA0T7B44/BQAAANALwGMQAAAAADYO8If2+P31AgAAQN0SWbhFDwCAZlXgaO1xAAAA1FngnA8AACAeQPSNEAAAAM4CnC64AAAA4GzN4N9NSfgKEAAAAACszO26X8/X6BYAAAD0Anid8KcLAAAAAAAAAJBnwNEvAAAA9Jns1ygAAAAAAAAAAAAAAAAAAABAQ4COCENERERERERERBrnAa1sJuUVr3rsAAAAAElFTkSuQmCC';
   var LEFT_KEY = 37;
   var RIGHT_KEY = 39;
@@ -244,7 +244,7 @@
   var Player = SheetSprite.extend({
     init: function() {
       this._super(spriteSheetImg, PLAYER_CLIP_RECT, CANVAS_WIDTH/2, CANVAS_HEIGHT - 70);
-      this.scale.set(0.95, 0.95);
+      this.scale.set(1, 1);
       this.lives = 3;
       this.xVel = 0;
       this.bullets = [];
@@ -521,7 +521,7 @@
         case 3: clipRects = ALIEN_MIDDLE_ROW; break;
         case 4: clipRects = ALIEN_TOP_ROW; break;
       }
-      aliens.push(new Enemy(clipRects, (CANVAS_WIDTH/2 - ALIEN_SQUAD_WIDTH/2) + ALIEN_X_MARGIN/2 + gridX * ALIEN_X_MARGIN, CANVAS_HEIGHT/3.25 - gridY * 40));
+      aliens.push(new Enemy(clipRects, (CANVAS_WIDTH/2 - ALIEN_SQUAD_WIDTH/2) + ALIEN_X_MARGIN/2 + gridX * ALIEN_X_MARGIN, CANVAS_HEIGHT/2.5 - gridY * 25));
       alienCount++;
     }
   }
@@ -694,14 +694,16 @@
   function drawStartScreen() {
     fillCenteredText("Space Invaders", CANVAS_WIDTH/2, CANVAS_HEIGHT/2.75, '#FFFFFF', 36);
     fillBlinkingText("Presiona enter para comenzar", CANVAS_WIDTH/2, CANVAS_HEIGHT/2, 500, '#FFFFFF', 36);
+    return
   }
   
   function animate() {
     var now = window.performance.now();
     var dt = now - lastTime;
     if (dt > 100) dt = 100;
-    if (wasKeyPressed(13) && !hasGameStarted) {
-      initGame();
+    // if (wasKeyPressed(13) && !hasGameStarted) {
+      if (!hasGameStarted) {
+        initGame();
       hasGameStarted = true;
     }
     

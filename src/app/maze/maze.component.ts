@@ -26,7 +26,15 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatIconModule,
   ],
-  styleUrls: ['./maze.component.scss'],
+  styles: [`
+  .arrows button {
+    // font-size: 25px;
+     margin: 25px;
+     scale: 1.5;
+     user-select: none;
+     cursor: pointer;
+   }
+   `],
   template: `
       <div *ngIf="!disabled" class="flex flex-col md:flex-row w-full md:w-full items-center justify-between gap-10">
           <div class="flex flex-row justify-center">
@@ -130,7 +138,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class MazeComponent implements AfterViewInit {
   _layoutService: LayoutService = inject(LayoutService)
-  row = 35;
+  row = 25;
   col = 15;
   private maze!: Maze;
   private canvas!: HTMLCanvasElement;
